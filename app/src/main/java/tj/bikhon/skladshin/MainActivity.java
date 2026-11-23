@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
             runOnUiThread(() -> {
                 PrintManager pm = (PrintManager) getSystemService(Context.PRINT_SERVICE);
                 if (pm == null) { toast("Печать недоступна"); return; }
-                pm.print("Склад шин", web.createPrintDocumentAdapter("Склад шин"),
+                pm.print("Чарх", web.createPrintDocumentAdapter("Чарх"),
                         new PrintAttributes.Builder().build());
             });
         }

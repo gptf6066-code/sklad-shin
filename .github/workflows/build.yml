@@ -29,19 +29,19 @@ jobs:
       - name: Collect files
         run: |
           mkdir -p out
-          cp app/build/outputs/apk/release/app-release.apk out/Sklad-Shin.apk
+          cp app/build/outputs/apk/release/app-release.apk out/Charkh.apk
           ls -la out
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Sklad-Shin
+          name: Charkh
           path: out/*
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.${{ github.run_number }}
-          name: Склад шин v1.${{ github.run_number }}
+          name: Чарх v1.${{ github.run_number }}
           body: |
-            **Sklad-Shin.apk** — барои насб дар телефони Android.
+            **Charkh.apk** — барои насб дар телефони Android.
           files: out/*

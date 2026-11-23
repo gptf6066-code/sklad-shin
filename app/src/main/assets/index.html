@@ -211,7 +211,7 @@ textarea{width:100%;min-height:90px;resize:vertical;border:1px solid var(--line)
 .qa button{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:78px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:500 15px var(--font);cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.06)}
 .qa button .ic{color:var(--accent)}
 .qa button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)} .qa button.on .ic{color:var(--on-accent)}
-.money{background:linear-gradient(135deg,#2D9CD8,#1565A0);color:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 3px 10px rgba(21,101,160,.3)}
+.money{background:linear-gradient(135deg,var(--bar),var(--accent));color:var(--bar-ink);border-radius:12px;padding:16px 18px;box-shadow:0 3px 10px rgba(21,101,160,.3)}
 .money>small{opacity:.85;font-size:13.5px}
 .money>b{display:block;font:500 clamp(30px,9vw,38px)/1.15 var(--font);margin:4px 0 10px;white-space:nowrap}
 .money>b span{font-size:16px;font-weight:400;opacity:.85}
@@ -226,14 +226,16 @@ textarea{width:100%;min-height:90px;resize:vertical;border:1px solid var(--line)
 .cc{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center}
 .cb{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:1px;border-bottom:1px solid var(--line)}
 .cb i{display:block;width:42%;max-width:9px;background:var(--accent);border-radius:2px 2px 0 0}
-.cb i.p{background:#2B2F36} .cb i.n{background:var(--bad)}
-:root[data-theme="dark"] .cb i.p{background:#E7E9EC}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cb i.p{background:#E7E9EC}}
+.cb i.p{background:var(--ink)} .cb i.n{background:var(--bad)}
 .cc span{font-size:10.5px;color:var(--muted);margin-top:3px}
 .cc span.now{color:var(--ink);font-weight:700}
 .lg{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin-top:10px;align-items:center}
 .lg i{display:inline-block;width:11px;height:11px;border-radius:2px;background:var(--accent);margin-right:6px;vertical-align:-1px}
-.lg i.p{background:#2B2F36}
+.lg i.p{background:var(--ink)}
+.thc{display:inline-flex;align-items:center;gap:8px}
+.thc i{width:18px;height:18px;border-radius:50%;border:1px solid rgba(127,127,127,.4)}
+.thr{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;border-top:1px solid var(--line);font-size:15px;cursor:pointer}
+.thr input{width:52px;height:34px;border:1px solid var(--line);border-radius:8px;background:none;padding:2px;cursor:pointer}
 .op{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
 .op:first-of-type{border-top:0;margin-top:4px}
 .op b{font-weight:500;font-size:15px}
@@ -364,6 +366,7 @@ function seed(){
 function migrate(o){
   if(!(o&&(o.v===1||o.v===2)&&o.wh&&o.products))return null;
   if(o.name==='Склад шин')o.name='Чарх';
+  o.ob=o.ob||{date:'',debts:[]};
   o.partners=o.partners||[];o.docs=o.docs||[];o.cash=o.cash||[];o.seq=o.seq||{buy:0,sale:0,cash:0};o.v=2;
   return o;
 }
@@ -545,6 +548,9 @@ function vSet(){
   return '<header class="bar"><button class="ib" data-act="drawer" aria-label="Меню">'+ic('menu')+'</button><h1 class="bt">Настройки</h1></header><div class="sc"><div class="pg">'+
   '<section class="cd"><div class="fi"><label for="s-name">Название</label><input id="s-name" value="'+esc(S.name)+'" autocomplete="off"></div>'+
   '<div class="fi"><label for="s-rate">Курс доллара, сом</label><input id="s-rate" value="'+esc(S.rate)+'" inputmode="decimal" autocomplete="off"></div><p class="note">Курс нужен, чтобы посчитать себестоимость по цене закупки в долларах.</p></section>'+
+  '<section class="cd"><div class="sh"><span class="si">'+ic('act')+'</span><span>Начальные остатки</span></div><p class="note">Деньги, шины и долги, которые были у владельца до начала работы в программе. Они войдут в баланс и отчёты, и всегда будет видно, сколько было до программы.</p>'+
+    (S.ob&&S.ob.date?'<p style="margin-top:8px">Внесено на '+fd(S.ob.date)+': <b>'+nf(openTotals().total)+' сом.</b></p>':'')+'<button class="btn w" style="margin-top:10px" data-act="obopen">'+(S.ob&&S.ob.date?'Посмотреть и изменить':'Внести начальные остатки')+'</button></section>'+
+  themeH()+
   '<section class="cd"><div class="sh"><span>Резервная копия</span></div><p class="note" style="margin-bottom:8px">Данные хранятся только в этом браузере. Скопируйте их и сохраните, чтобы не потерять или перенести на другое устройство.</p>'+
   '<textarea id="bk" readonly aria-label="Данные для копирования">'+esc(JSON.stringify(S))+'</textarea><div class="acts" style="margin-top:8px"><button class="btn t" data-act="copybk">Скопировать</button></div>'+
   '<textarea id="rs" placeholder="Вставьте сюда ранее скопированные данные" aria-label="Данные для восстановления" style="margin-top:8px"></textarea><div class="acts" style="margin-top:8px"><button class="btn t" data-act="restore">Восстановить</button></div></section>'+
@@ -556,7 +562,7 @@ function vSet(){
 function drawerH(){
   var pcs=0;S.products.forEach(function(p){S.wh.forEach(function(w){var q=stOf(p,w.id).q;if(q>0)pcs+=q})});
   var s=cur().s,it=function(k,i,l){return '<button class="nv" data-act="go" data-v="'+k+'"'+(s===k?' aria-current="page"':'')+'>'+ic(i)+l+'</button>'};
-  var sec={home:'home',list:'list',card:'list',form:'list',buys:'buys',sales:'sales',moves:'moves',doc:DOCSEC(),dform:DOCSEC(),cash:'cash',cform:'cash',act:'act',actp:'act',bal:'bal',whs:'whs',set:'set'}[s]||s;
+  var sec={home:'home',list:'list',card:'list',form:'list',buys:'buys',sales:'sales',moves:'moves',doc:DOCSEC(),dform:DOCSEC(),cash:'cash',cform:'cash',act:'act',actp:'act',bal:'bal',open:'set',whs:'whs',set:'set'}[s]||s;
   it=function(k,i,l){return '<button class="nv" data-act="go" data-v="'+k+'"'+(sec===k?' aria-current="page"':'')+'>'+ic(i)+l+'</button>'};
   return '<div class="scrim" data-act="dclose"></div><nav class="pn" aria-label="Разделы"><div class="dh"><div class="dav">'+esc(S.name.slice(0,1).toUpperCase())+'</div><div><b>'+esc(S.name)+'</b><small>'+nf(pcs)+' шт. · '+S.wh.length+' '+plural(S.wh.length,'склад','склада','складов')+'</small></div><button class="rt2" data-act="rate">'+ic('rate')+'Курс: 1 USD = '+f2(S.rate)+' TJS</button></div>'+
     it('home','house','Главная')+it('list','box','Склад (товары)')+it('moves','move','Перемещение')+it('buys','truck','Закупка')+it('sales','sell','Реализация')+it('cash','cash','Касса и банк')+it('act','act','Акт сверки')+it('bal','chart','Баланс и отчёты')+'<div class="nvs"></div>'+it('whs','box','Склады')+it('set','tune','Настройки')+'</nav>';
@@ -602,6 +608,7 @@ function daysAgo(n){var d=new Date();d.setDate(d.getDate()-n);return iso(d)}
 function fd(s){if(!s)return '';var a=String(s).split('-');return a.length===3?a[2]+'.'+a[1]+'.'+a[0]:s}
 var DT={buy:{pre:'З',one:'Закупка',list:'Закупка',who:'Поставщик',sec:'buys',nw:'Новая закупка'},
         sale:{pre:'Р',one:'Продажа',list:'Реализация',who:'Клиент',sec:'sales',nw:'Новая продажа'},
+        open:{pre:'НО',one:'Начальный остаток',list:'Начальные остатки',who:'',sec:'set',nw:''},
         move:{pre:'П',one:'Перемещение',list:'Перемещение',who:'',sec:'moves',nw:'Новое перемещение'}};
 var SECT={buys:'buy',sales:'sale',moves:'move'};
 var CATS={in:['Оплата от клиента','Продажа за наличные','Взнос владельца','Прочий приход'],out:['Оплата поставщику','Зарплата','Аренда','Расходы склада','Прочий расход','Изъятие владельца']};
@@ -625,7 +632,7 @@ function paidOf(d){return r2(S.cash.filter(function(c){return c.docId===d.id}).r
 function itemsText(d){return d.items.map(function(it){var p=prod(it.pid);return (p?p.name:'(товар удалён)')+' × '+it.qty}).join('; ')}
 /* stock: a purchase adds to the warehouse, a sale takes from it; sign -1 reverses a document */
 function applyDoc(d,sign){
-  d.items.forEach(function(it){var p=prod(it.pid);if(!p)return;if(!p.st[d.wh])p.st[d.wh]={q:0,r:0,w:0};p.st[d.wh].q+=sign*(d.type==='buy'?1:-1)*it.qty;
+  d.items.forEach(function(it){var p=prod(it.pid);if(!p)return;if(!p.st[d.wh])p.st[d.wh]={q:0,r:0,w:0};p.st[d.wh].q+=sign*(d.type==='buy'||d.type==='open'?1:-1)*it.qty;
     if(d.type==='move'){if(!p.st[d.wh2])p.st[d.wh2]={q:0,r:0,w:0};p.st[d.wh2].q+=sign*it.qty}});
 }
 function setAutoPay(d,paid,acc){
@@ -646,6 +653,8 @@ function moves(pid){
     out.push({date:d.date,no:d.no,cur:CU(d.cur),deb:d.type==='sale'?s:0,cred:d.type==='buy'?s:0,lb:DT[d.type].one+' '+d.no,sm:itemsText(d)+(d.comment?' · '+d.comment:''),doc:d.id})});
   S.cash.forEach(function(c){if(c.partner!==pid)return;
     out.push({date:c.date,no:c.no,cur:CU(c.cur),deb:c.dir==='out'?c.amount:0,cred:c.dir==='in'?c.amount:0,lb:(c.dir==='in'?'Получена оплата ':'Выплачено ')+c.no,sm:[c.cat,c.comment].filter(Boolean).join(' · ')})});
+  if(S.ob)(S.ob.debts||[]).forEach(function(x){if(x.pid!==pid||!x.amt)return;
+    out.push({date:S.ob.date,no:'',cur:CU(x.cur),deb:x.amt>0?x.amt:0,cred:x.amt<0?-x.amt:0,lb:'Начальный остаток долга',sm:'до начала работы в программе'})});
   out.sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.no<b.no?-1:a.no>b.no?1:0)});
   return out;
 }
@@ -889,7 +898,7 @@ function pnl(from,to){
 /* stock value (at cost) on a date: today's stock minus documents dated later */
 function stockAt(upto){
   var q={};S.products.forEach(function(p){q[p.id]=agg(p,allIds()).q});
-  S.docs.forEach(function(d){if(d.date<=upto||d.type==='move')return;d.items.forEach(function(it){if(q[it.pid]==null)return;q[it.pid]-=(d.type==='buy'?1:-1)*it.qty})});
+  S.docs.forEach(function(d){if(d.date<=upto||d.type==='move')return;d.items.forEach(function(it){if(q[it.pid]==null)return;q[it.pid]-=(d.type==='buy'||d.type==='open'?1:-1)*it.qty})});
   var v=0,n=0;S.products.forEach(function(p){if(q[p.id]>0){v+=q[p.id]*(p.cost||0);n+=q[p.id]}});return {v:v,n:n};
 }
 function debtsAt(upto){
@@ -911,14 +920,14 @@ function vBal(){
   if(T==='bal'){
     var k=tjsOf(moneyBal('cash',end)),bk=tjsOf(moneyBal('bank',end)),st=stockAt(end),db=debtsAt(end);
     var assets=k+bk+st.v+db.rec,cap=capitalAt(end),cur=pnl(R.from,end).net,prev=pnl('',dayBefore(R.from)).net;
-    var corr=assets-(db.pay+cap+prev+cur);
+    var ov=S.ob&&S.ob.date&&S.ob.date<=end?openTotals().total:0,corr=assets-(db.pay+cap+prev+cur+ov);
     ttl='Баланс на конец '+({day:'дня',month:'месяца',year:'года'}[ui.bp]);
     body='<div class="bh">Актив</div>'+row('Касса',k)+row('Банк',bk)+row('Шины на складе (по закупке)',st.v)+(db.rec?row('Долги клиентов (нам должны)',db.rec):'')+
       row('<b>Итого актив</b>','<b>'+nf(assets)+' сом.</b>',{c:'tt',raw:1})+
       '<div class="bh">Пассив</div>'+(db.pay?row('Долги поставщикам (мы должны)',db.pay):'')+row('Капитал владельца<br><small>внесено минус изъято</small>',cap)+row('Прибыль прошлых периодов',prev)+row('Прибыль за период',cur)+
-      (Math.abs(corr)>=1?row('Начальные остатки<br><small>товар и деньги, внесённые без документов</small>',corr):'')+
+      (ov?row('Начальные остатки<br><small>что было до начала работы в программе</small>',ov):'')+(Math.abs(corr)>=1?row('Прочие корректировки<br><small>ручные изменения остатков и переоценка шин</small>',corr):'')+
       row('<b>Итого пассив</b>','<b>'+nf(assets)+' сом.</b>',{c:'tt',raw:1})+
-      (Math.abs(corr)<1?'<span class="okb">Баланс сходится</span>':'<p class="note" style="margin-top:10px">Строка «Начальные остатки» — это шины и деньги, которые внесены в программу напрямую, без закупки или взноса владельца. Баланс сходится с её учётом.</p>');
+      (Math.abs(corr)<1?'<span class="okb">Баланс сходится</span>':'<p class="note" style="margin-top:10px">«Прочие корректировки» — это шины, остаток которых изменили вручную в карточке товара, и изменение цены закупки уже лежащих на складе шин. Шины, внесённые вручную, можно перенести кнопкой «Взять из текущих остатков склада» в «Начальных остатках».</p>');
   }else if(T==='pl'){
     var r=pnl(R.from,end);ttl='Прибыли и убытки';
     body=row('Выручка от продаж ('+r.n+')',r.rev)+row('Себестоимость проданных шин',-r.cogs)+row('<b>Валовая прибыль</b>','<b>'+nf(r.gross)+' сом.</b>',{c:'tt',raw:1})+
@@ -927,10 +936,10 @@ function vBal(){
       row('<b>'+(r.net>=0?'Чистая прибыль':'Чистый убыток')+'</b>','<b class="'+(r.net<0?'neg':'pos')+'">'+nf(r.net)+' сом.</b>',{c:'tt',raw:1})+
       (r.rev?'<p class="note" style="margin-top:8px">Рентабельность продаж: '+f2(r.net/r.rev*100)+'%</p>':'');
   }else{
-    var op=tjsOf(cashBal(dayBefore(R.from))),inn={},out={},si=0,so=0;
-    S.cash.forEach(function(c){if(c.date<R.from||c.date>end||c.dir==='tr')return;var v=tj(c.amount,c.cur);if(c.dir==='in'){inn[c.cat]=(inn[c.cat]||0)+v;si+=v}else{out[c.cat]=(out[c.cat]||0)+v;so+=v}});
+    var op=tjsOf(cashBal(dayBefore(R.from))),inn={},out={},si=0,so=0,oi=0;
+    S.cash.forEach(function(c){if(c.date<R.from||c.date>end||c.dir==='tr')return;if(c.open){oi+=tj(c.amount,c.cur);return}var v=tj(c.amount,c.cur);if(c.dir==='in'){inn[c.cat]=(inn[c.cat]||0)+v;si+=v}else{out[c.cat]=(out[c.cat]||0)+v;so+=v}});
     var cl=tjsOf(cashBal(end));ttl='Движение денег';
-    body=row('Остаток на начало',op)+'<div class="bh">Поступления</div>'+(si?Object.keys(inn).map(function(c){return row(esc(c),inn[c])}).join(''):'<p class="note">Поступлений нет</p>')+row('<b>Всего поступило</b>','<b class="pos">'+nf(si)+' сом.</b>',{c:'tt',raw:1})+
+    body=row('Остаток на начало',op)+(oi?row('Начальные остатки (ввод)',oi):'')+'<div class="bh">Поступления</div>'+(si?Object.keys(inn).map(function(c){return row(esc(c),inn[c])}).join(''):'<p class="note">Поступлений нет</p>')+row('<b>Всего поступило</b>','<b class="pos">'+nf(si)+' сом.</b>',{c:'tt',raw:1})+
       '<div class="bh">Выплаты</div>'+(so?Object.keys(out).map(function(c){return row(esc(c),-out[c])}).join(''):'<p class="note">Выплат нет</p>')+row('<b>Всего выплачено</b>','<b class="neg">'+nf(-so)+' сом.</b>',{c:'tt',raw:1})+
       row('<b>Остаток на конец</b>','<b>'+nf(cl)+' сом.</b>',{c:'tt',raw:1})+row('— в кассе',tjsOf(moneyBal('cash',end)))+row('— в банке',tjsOf(moneyBal('bank',end)))+
       '<p class="note" style="margin-top:8px">Переводы между кассой и банком не считаются поступлениями и выплатами.</p>';
@@ -959,8 +968,8 @@ function vHome(){
   var negN=S.products.filter(function(p){return agg(p,allIds()).q<0}).length;
   /* latest operations: documents + cash not created by a document */
   var ops=[];
-  S.docs.forEach(function(d){ops.push({date:d.date,no:d.no,d:d})});
-  S.cash.forEach(function(c){if(!c.auto)ops.push({date:c.date,no:c.no,c:c})});
+  S.docs.forEach(function(d){if(d.type!=='open')ops.push({date:d.date,no:d.no,d:d})});
+  S.cash.forEach(function(c){if(!c.auto&&!c.open)ops.push({date:c.date,no:c.no,c:c})});
   ops.sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:(a.no<b.no?1:-1)});
   var opH=ops.slice(0,8).map(function(o){
     if(o.d){var d=o.d,s=tj(docSum(d),d.cur,d.rate),tt=d.type==='sale'?'Продажа':d.type==='buy'?'Закупка':'Перемещение';
@@ -1004,7 +1013,7 @@ function cashRows(){
 function cashRowH(c){
   var dc=c.docId?docById(c.docId):null,tr=c.dir==='tr';
   var who=tr?ACC[c.acc||'cash']+' → '+ACC[c.acc2||'bank']:(pName(c.partner)||c.cat||'—');
-  return '<div class="dr" tabindex="0" role="button" data-act="copen" data-id="'+c.id+'"><div class="l1">'+esc(c.no)+' · '+fd(c.date)+' · <span class="pill '+(tr?'':c.dir)+'">'+(tr?'Перевод':c.dir==='in'?'Приход':'Расход')+'</span>'+(tr?'':' · '+ACC[c.acc||'cash'])+'</div><div class="l2">'+esc(who)+'</div>'+
+  return '<div class="dr" tabindex="0" role="button" data-act="copen" data-id="'+c.id+'"><div class="l1">'+esc(c.no)+' · '+fd(c.date)+' · <span class="pill '+(tr||c.open?'':c.dir)+'">'+(c.open?'Начальный остаток':tr?'Перевод':c.dir==='in'?'Приход':'Расход')+'</span>'+(tr?'':' · '+ACC[c.acc||'cash'])+'</div><div class="l2">'+esc(who)+'</div>'+
     '<div class="am '+(tr?'':c.dir)+'">'+(tr?'':c.dir==='in'?'+':'−')+f2(c.amount)+'<small>'+CU(c.cur)+'</small></div><div class="l3">'+(tr?'':esc(c.cat||''))+(dc&&(c.comment||'').indexOf(dc.no)<0?' · по документу '+esc(dc.no):'')+(c.comment?' <i>'+esc(c.comment)+'</i>':'')+'</div></div>';
 }
 function vCash(){
@@ -1123,12 +1132,20 @@ function act2(a,t,id){
         L.map(function(d){var s=docSum(d),p=paidOf(d);return [fd(d.date),d.no,pName(d.partner),f2(s),CU(d.cur),d.cur==='USD'?f2(d.rate):'',whName(d.wh),itemsText(d),docQty(d),f2(p),f2(Math.max(0,s-p)),d.comment||'']}));break}
     case 'dpay':{closeOv();var dc=docById(cur().id),rest=r2(docSum(dc)-paidOf(dc));
       newCash({dir:dc.type==='sale'?'in':'out',partner:pName(dc.partner),amount:String(rest),cur:dc.cur,docId:dc.id,comment:'Оплата по '+dc.no});push({s:'cform'});break}
+    case 'obopen':ui.ob=null;obLoad();push({s:'open'});break;
+    case 'obsave':obSave();break;
+    case 'obadd':ui.ob[t.dataset.k].push(t.dataset.k==='stock'?{prod:'',wh:String(S.wh[0]?S.wh[0].id:1),qty:'',cost:''}:{name:'',dir:'in',amt:'',cur:'TJS'});keep();break;
+    case 'obrm':ui.ob[t.dataset.k].splice(+t.dataset.i,1);keep();break;
+    case 'obfill':obFill();break;
+    case 'thp':TH.preset=t.dataset.v;TH.over={};saveTh();applyTheme();keep();break;
+    case 'ths':TH.size=+t.dataset.v;saveTh();applyTheme();keep();break;
+    case 'threset':TH={preset:'auto',over:{},size:1};saveTh();applyTheme();keep();toast('Оформление сброшено');break;
     case 'cnew':newCash(t.dataset.v?{dir:t.dataset.v}:null);push({s:'cform'});break;
     case 'btab':ui.bt=t.dataset.v;keep();break;
     case 'bper':ui.bp=t.dataset.v;keep();break;
     case 'bprev':bShift(-1);keep();break;
     case 'bnext':bShift(1);if(bRange().from>today())bShift(-1);keep();break;
-    case 'copen':{var c=cashById(id);if(!c)break;if(c.auto&&c.docId&&docById(c.docId)&&cur().s!=='doc'){push({s:'doc',id:c.docId});break}editCash(c);push({s:'cform'});break}
+    case 'copen':{var c=cashById(id);if(!c)break;if(c.open){obLoad();push({s:'open'});break}if(c.auto&&c.docId&&docById(c.docId)&&cur().s!=='doc'){push({s:'doc',id:c.docId});break}editCash(c);push({s:'cform'});break}
     case 'cdir':ui.cf.d.dir=t.dataset.v;ui.cf.d.cat=t.dataset.v==='tr'?'Перевод':CATS[t.dataset.v][0];if(t.dataset.v==='tr'){ui.cf.d.partner='';ui.cf.d.acc2=ui.cf.d.acc==='bank'?'cash':'bank'}keep();break;
     case 'csave':saveCash();break;
     case 'cdelask':openOv({t:'cdel'});break;
@@ -1157,6 +1174,9 @@ function gIn(t,ch){
   if(k==='dq'){ui.dq=v;fillDocs();return}
   if(k==='aq'){ui.aq=v;fillAct();return}
   if(k==='af'||k==='at'){if(ch){ui.ap[k==='af'?'from':'to']=v;keep()}return}
+  if(k.indexOf('o.')===0){if(!ui.ob)return;var ps=k.slice(2).split('.'),tg=ui.ob;for(var i=0;i<ps.length-1;i++)tg=tg[ps[i]];var last=ps[ps.length-1];tg[last]=v;
+    if(ch&&ps[0]==='stock'&&last==='prod'){var pr=findProd(v);if(pr){tg.prod=pr.code+' · '+pr.name;if(tg.cost==='')tg.cost=String(pr.cost||0)}}
+    if(ch)keep();return}
   if(k.indexOf('c.')===0){if(ui.cf){var cd=ui.cf.d;cd[k.slice(2)]=v;if(ch&&cd.dir==='tr'&&(k==='c.acc'||k==='c.acc2')){if(cd.acc===cd.acc2){if(k==='c.acc')cd.acc2=v==='bank'?'cash':'bank';else cd.acc=v==='bank'?'cash':'bank'}keep()}}return}
   if(!ui.df)return;var d=ui.df.d,p=k.split('.');
   if(p[0]==='it'){var L=d.items[+p[1]];if(!L)return;L[p[2]]=v;
@@ -1172,9 +1192,13 @@ function gIn(t,ch){
 /* demo documents so every section has something to look at */
 function seedDocs(){
   var P=S.products,sup=partnerByName('Шамсулло баллон',true),c1=partnerByName('Фирдавс (Ҳисор)',true),c2=partnerByName('Автосервис «Мотор»',true);
-  S.cash.push({id:1,no:nextNo('cash'),dir:'in',acc:'cash',date:daysAgo(7),partner:0,amount:5000,cur:'TJS',cat:'Взнос владельца',comment:'Начальный остаток кассы',docId:0});
+  /* the demo stock counts as what the owner had before the program */
+  var od=daysAgo(8);S.ob={date:od,debts:[{pid:c2,amt:300,cur:'TJS'}]};
+  S.wh.forEach(function(w){var items=[];P.forEach(function(p){var q=stOf(p,w.id).q;if(q>0)items.push({pid:p.id,qty:q,price:p.cost||0})});
+    if(items.length)S.docs.push({id:nextId(S.docs),no:nextNo('open'),type:'open',date:od,partner:0,wh:w.id,cur:'TJS',rate:S.rate,items:items,comment:'Начальные остатки'})});
+  S.cash.push({id:1,no:nextNo('cash'),dir:'in',acc:'cash',date:od,partner:0,amount:5000,cur:'TJS',cat:'Начальный остаток',comment:'До начала работы в программе',docId:0,open:1});
   S.cash.push({id:3,no:nextNo('cash'),dir:'in',acc:'bank',date:daysAgo(7),partner:0,amount:40000,cur:'TJS',cat:'Взнос владельца',comment:'Деньги на расчётном счёте',docId:0});
-  S.cash.push({id:2,no:nextNo('cash'),dir:'in',acc:'cash',date:daysAgo(7),partner:0,amount:600,cur:'USD',cat:'Взнос владельца',comment:'Начальный остаток кассы',docId:0});
+  S.cash.push({id:2,no:nextNo('cash'),dir:'in',acc:'cash',date:od,partner:0,amount:600,cur:'USD',cat:'Начальный остаток',comment:'До начала работы в программе',docId:0,open:1});
   addDoc({type:'buy',date:daysAgo(5),partner:sup,wh:1,cur:'USD',rate:S.rate,items:[{pid:P[5].id,qty:8,price:30},{pid:P[9].id,qty:4,price:35}],comment:'Партия из Китая'},300);
   addDoc({type:'sale',date:daysAgo(2),partner:c1,wh:1,cur:'TJS',rate:S.rate,items:[{pid:P[0].id,qty:4,price:P[0].price}],comment:'Покупатель Фирдавс, продавец Ахмад'},P[0].price*4,'bank');
   addDoc({type:'sale',date:today(),partner:c2,wh:2,cur:'TJS',rate:S.rate,items:[{pid:P[6].id,qty:2,price:P[6].price},{pid:P[1].id,qty:1,price:P[1].price}],comment:'Работник: Самад'},500);
@@ -1186,11 +1210,136 @@ function seedDocs(){
 
 if(S._demo){delete S._demo;seedDocs();save()}
 
+/* ---------- opening balances (начальные остатки) ---------- */
+function openTotals(){
+  var r={money:0,stock:0,qty:0,rec:0,pay:0};
+  S.cash.forEach(function(c){if(c.open)r.money+=tj(c.amount,c.cur)});
+  S.docs.forEach(function(d){if(d.type!=='open')return;d.items.forEach(function(it){r.stock+=it.qty*it.price;r.qty+=it.qty})});
+  ((S.ob&&S.ob.debts)||[]).forEach(function(x){var v=tj(x.amt,x.cur);if(v>0)r.rec+=v;else r.pay-=v});
+  r.total=r.money+r.stock+r.rec-r.pay;return r;
+}
+function obLoad(){
+  var m={cash:{TJS:'',USD:''},bank:{TJS:'',USD:''}};
+  S.cash.forEach(function(c){if(c.open)m[c.acc||'cash'][CU(c.cur)]=String(r2(num(m[c.acc||'cash'][CU(c.cur)])+c.amount))});
+  var st=[];S.docs.forEach(function(d){if(d.type!=='open')return;d.items.forEach(function(it){var p=prod(it.pid);st.push({prod:p?p.code+' · '+p.name:'',wh:String(d.wh),qty:String(it.qty),cost:String(it.price)})})});
+  var db=((S.ob&&S.ob.debts)||[]).map(function(x){return {name:pName(x.pid),dir:x.amt>=0?'in':'out',amt:String(Math.abs(x.amt)),cur:x.cur}});
+  ui.ob={date:(S.ob&&S.ob.date)||today(),m:m,stock:st.length?st:[{prod:'',wh:String(S.wh[0]?S.wh[0].id:1),qty:'',cost:''}],debts:db.length?db:[{name:'',dir:'in',amt:'',cur:'TJS'}],base:null};
+}
+function obPreview(){
+  var o=ui.ob,r={money:0,stock:0,qty:0,rec:0,pay:0};
+  ['cash','bank'].forEach(function(a){r.money+=num(o.m[a].TJS)+num(o.m[a].USD)*S.rate});
+  o.stock.forEach(function(L){var q=Math.round(num(L.qty));if(q>0&&findProd(L.prod)){r.qty+=q;r.stock+=q*num(L.cost)}});
+  o.debts.forEach(function(x){var v=tj(num(x.amt),x.cur);if(!(v>0)||!x.name.trim())return;if(x.dir==='in')r.rec+=v;else r.pay+=v});
+  r.total=r.money+r.stock+r.rec-r.pay;return r;
+}
+function vOpen(){
+  if(!ui.ob)obLoad();var o=ui.ob,P=obPreview();
+  var dl='<datalist id="pdl">'+S.products.map(function(p){return '<option value="'+esc(p.code+' · '+p.name)+'">'}).join('')+'</datalist>'+pdl();
+  var money=function(a,c,lb){return gf(lb,'o.m.'+a+'.'+c,o.m[a][c],{mode:'decimal',ph:'0'})};
+  var st=o.stock.map(function(L,i){var p=findProd(L.prod);
+    return '<div class="ln">'+(o.stock.length>1?'<button class="ib x" data-act="obrm" data-k="stock" data-i="'+i+'" aria-label="Убрать">'+ic('close')+'</button>':'')+
+      gf('Шина','o.stock.'+i+'.prod',L.prod,{list:'pdl',ph:'Код или название'})+(L.prod&&!p?'<div class="lsum neg">Товар не найден — выберите из списка или добавьте его в «Склад»</div>':'')+
+      '<div class="fi"><label>Склад</label><select data-g="o.stock.'+i+'.wh">'+whOpts(L.wh)+'</select></div><div class="fi2" style="grid-template-columns:1fr 1fr">'+gf('Кол-во, шт','o.stock.'+i+'.qty',L.qty,{mode:'decimal'})+gf('Цена закупки за 1 шт, сом','o.stock.'+i+'.cost',L.cost,{mode:'decimal'})+'</div></div>'}).join('');
+  var db=o.debts.map(function(x,i){
+    return '<div class="ln">'+(o.debts.length>1?'<button class="ib x" data-act="obrm" data-k="debts" data-i="'+i+'" aria-label="Убрать">'+ic('close')+'</button>':'')+
+      gf('Клиент или поставщик','o.debts.'+i+'.name',x.name,{list:'padl',ph:'Имя'})+
+      '<div class="lnf"><div class="fi"><label>Кто должен</label><select data-g="o.debts.'+i+'.dir"><option value="in"'+(x.dir==='in'?' selected':'')+'>Он нам</option><option value="out"'+(x.dir==='out'?' selected':'')+'>Мы ему</option></select></div>'+
+      gf('Сумма','o.debts.'+i+'.amt',x.amt,{mode:'decimal',ph:'0'})+'<div class="fi"><label>Валюта</label><select data-g="o.debts.'+i+'.cur">'+curOpts(x.cur)+'</select></div></div></div>'}).join('');
+  return '<header class="bar"><button class="ib" data-act="back" aria-label="Назад">'+ic('back')+'</button><h1 class="bt">Начальные остатки</h1><button class="ib" data-act="obsave" aria-label="Сохранить">'+ic('check')+'</button></header>'+dl+
+  '<div class="sc"><div class="pg">'+
+  '<section class="cd"><p class="note" style="margin-bottom:6px">Внесите то, что было у владельца до начала работы в программе. Эти суммы войдут в баланс и отчёты отдельной строкой «Начальные остатки» и не будут считаться прибылью или закупкой.</p>'+gf('Дата начала учёта','o.date',o.date,{type:'date'})+'</section>'+
+  '<section class="cd"><div class="sh"><span class="si">'+ic('cash')+'</span><span>Деньги</span></div><div class="fi2" style="grid-template-columns:1fr 1fr">'+money('cash','TJS','Касса, TJS')+money('cash','USD','Касса, USD')+money('bank','TJS','Банк, TJS')+money('bank','USD','Банк, USD')+'</div></section>'+
+  '<section class="cd"><div class="sh"><span class="si">'+ic('box')+'</span><span>Шины на складах</span></div>'+st+
+    '<button class="btn t w" style="margin-top:8px" data-act="obadd" data-k="stock">+ Добавить шину</button>'+
+    '<button class="btn t w" data-act="obfill">Взять из текущих остатков склада</button><p class="note">Если шины уже внесены в «Склад», нажмите эту кнопку: остатки станут начальными, а количество на складе не удвоится.</p></section>'+
+  '<section class="cd"><div class="sh"><span class="si">'+ic('act')+'</span><span>Долги</span></div>'+db+'<button class="btn t w" style="margin-top:8px" data-act="obadd" data-k="debts">+ Добавить долг</button></section>'+
+  '<section class="cd"><div class="ti" style="margin-bottom:4px">Итого до начала программы</div>'+row('Деньги',P.money)+row('Шины ('+nf(P.qty)+' шт)',P.stock)+row('Нам должны',P.rec)+row('Мы должны',-P.pay)+row('<b>Всего (капитал на начало)</b>','<b>'+nf(P.total)+' сом.</b>',{c:'tt',raw:1})+'</section>'+
+  '<button class="btn w" data-act="obsave">Сохранить</button></div></div>';
+}
+function obSave(){
+  var o=ui.ob;if(!o.date)return toast('Укажите дату начала учёта');
+  var bad='',lines=[];
+  o.stock.forEach(function(L){if(!L.prod&&!num(L.qty))return;var p=findProd(L.prod);if(!p){bad=bad||'Шина «'+(L.prod||'?')+'» не найдена';return}var q=Math.round(num(L.qty));if(q<=0){bad=bad||'Количество должно быть больше нуля';return}lines.push({p:p,wh:+L.wh,qty:q,cost:r2(num(L.cost))})});
+  var debts=[];o.debts.forEach(function(x){var a=r2(num(x.amt));if(!x.name.trim()&&!a)return;if(!x.name.trim()){bad=bad||'Укажите, кто должен';return}if(!(a>0)){bad=bad||'Сумма долга должна быть больше нуля';return}debts.push({name:x.name,amt:x.dir==='in'?a:-a,cur:x.cur})});
+  var neg=false;['cash','bank'].forEach(function(a){['TJS','USD'].forEach(function(c){if(num(o.m[a][c])<0)neg=true})});
+  if(neg)bad=bad||'Суммы денег не могут быть меньше нуля';
+  if(bad)return toast(bad);
+  /* stock: undo old opening documents, take out quantities that were moved from current stock, apply new ones */
+  S.docs.filter(function(d){return d.type==='open'}).forEach(function(d){applyDoc(d,-1)});
+  S.docs=S.docs.filter(function(d){return d.type!=='open'});
+  if(o.base)Object.keys(o.base).forEach(function(k){var a=k.split('_'),p=prod(+a[0]);if(p&&p.st[+a[1]])p.st[+a[1]].q-=o.base[k]});
+  var byWh={};lines.forEach(function(L){(byWh[L.wh]=byWh[L.wh]||[]).push({pid:L.p.id,qty:L.qty,price:L.cost});if(L.cost>0)L.p.cost=Math.round(L.cost)});
+  Object.keys(byWh).forEach(function(w){addDoc({type:'open',date:o.date,partner:0,wh:+w,cur:'TJS',rate:S.rate,items:byWh[w],comment:'Начальные остатки'},0)});
+  S.cash=S.cash.filter(function(c){return !c.open});
+  ['cash','bank'].forEach(function(a){['TJS','USD'].forEach(function(c){var v=r2(num(o.m[a][c]));if(v>0)S.cash.push({id:nextId(S.cash),no:nextNo('cash'),dir:'in',acc:a,date:o.date,partner:0,amount:v,cur:c,cat:'Начальный остаток',comment:'До начала работы в программе',docId:0,open:1})})});
+  S.ob={date:o.date,debts:debts.map(function(x){return {pid:partnerByName(x.name,true),amt:x.amt,cur:x.cur}})};
+  save();ui.ob=null;toast('Начальные остатки сохранены');back();
+}
+function obFill(){
+  var o=ui.ob,base={},st=[];
+  /* current stock minus what the existing opening documents already added */
+  var cur={};S.products.forEach(function(p){S.wh.forEach(function(w){var q=stOf(p,w.id).q;if(q)cur[p.id+'_'+w.id]=q})});
+  /* only stock that no document explains (entered by hand): take out every purchase, sale, transfer and opening */
+  S.docs.forEach(function(d){d.items.forEach(function(it){var k=it.pid+'_'+d.wh,sg=d.type==='buy'||d.type==='open'?1:-1;cur[k]=(cur[k]||0)-sg*it.qty;
+    if(d.type==='move'){var k2=it.pid+'_'+d.wh2;cur[k2]=(cur[k2]||0)-it.qty}})});
+  S.docs.forEach(function(d){if(d.type!=='open')return;d.items.forEach(function(it){var p=prod(it.pid);if(p)st.push({prod:p.code+' · '+p.name,wh:String(d.wh),qty:String(it.qty),cost:String(it.price)})})});
+  var n=0;Object.keys(cur).forEach(function(k){if(cur[k]<=0)return;var a=k.split('_'),p=prod(+a[0]);if(!p)return;base[k]=cur[k];n++;
+    st.push({prod:p.code+' · '+p.name,wh:a[1],qty:String(cur[k]),cost:String(p.cost||0)})});
+  if(!n)return toast('Все шины на складе уже учтены: в начальных остатках, закупках и продажах');
+  o.stock=st;o.base=base;keep();toast('Добавлено строк: '+n+'. Проверьте цены и нажмите «Сохранить»');
+}
+
+/* ---------- appearance (оформление) ---------- */
+var THK='charkh-theme';
+var PRE={auto:{n:'Как в телефоне'},
+  blue:{n:'Голубая',bar:'#2D9CD8',accent:'#1B7DB7',fab:'#E91E63',page:'#DDE1E8',bg:'#F4F5F9',card:'#FFFFFF',ink:'#2B2F36'},
+  dark:{n:'Тёмная',bar:'#1D78AA',accent:'#5BB6E8',fab:'#E91E63',page:'#07090B',bg:'#121519',card:'#1D2126',ink:'#E7E9EC'},
+  gold:{n:'Чёрно-жёлтая',bar:'#16181C',accent:'#F5B400',fab:'#F5B400',page:'#0B0C0E',bg:'#121417',card:'#1C1F24',ink:'#F1F1F1'},
+  green:{n:'Зелёная',bar:'#2E7D32',accent:'#2E7D32',fab:'#FF8F00',page:'#DCE5DC',bg:'#F3F7F2',card:'#FFFFFF',ink:'#22301F'},
+  orange:{n:'Оранжевая',bar:'#EF6C00',accent:'#D84315',fab:'#1E88E5',page:'#EDE3DA',bg:'#FBF6F1',card:'#FFFFFF',ink:'#3A2A1E'},
+  purple:{n:'Фиолетовая',bar:'#5E35B1',accent:'#5E35B1',fab:'#00BFA5',page:'#E2DEEA',bg:'#F6F4FA',card:'#FFFFFF',ink:'#2C2540'}};
+var THF=[['bg','Фон программы'],['card','Фон карточек'],['ink','Цвет текста'],['bar','Верхняя панель'],['accent','Кнопки и выделение'],['fab','Круглая кнопка «+»']];
+var SIZES=[[.9,'Мелкий'],[1,'Обычный'],[1.12,'Крупный'],[1.25,'Очень крупный']];
+var TH=(function(){try{var t=JSON.parse(localStorage.getItem(THK));if(t&&t.preset)return t}catch(e){}return {preset:'auto',over:{},size:1}})();
+function saveTh(){try{localStorage.setItem(THK,JSON.stringify(TH))}catch(e){}}
+function sysDark(){try{return matchMedia('(prefers-color-scheme: dark)').matches}catch(e){return false}}
+function thBase(){return TH.preset==='auto'?PRE[sysDark()?'dark':'blue']:(PRE[TH.preset]||PRE.blue)}
+function thVals(){var b=thBase(),o={};THF.forEach(function(f){o[f[0]]=b[f[0]]});o.page=b.page;for(var k in TH.over||{})o[k]=TH.over[k];if(TH.over&&TH.over.bg&&!TH.over.page)o.page=mix(TH.over.bg,'#000000',.08,1);return o}
+function hexRgb(h){h=String(h).replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16)||0;return [n>>16&255,n>>8&255,n&255]}
+function mix(a,b,t,hex){var x=hexRgb(a),y=hexRgb(b),z=x.map(function(v,i){return Math.round(v*(1-t)+y[i]*t)});return hex?'#'+z.map(function(v){return (v<16?'0':'')+v.toString(16)}).join(''):'rgb('+z.join(',')+')'}
+function lum(h){var c=hexRgb(h).map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+function onC(h){return lum(h)>.42?'#111418':'#FFFFFF'}
+function applyTheme(){
+  var root=document.documentElement,r=root.style,app=document.getElementById('app');
+  var names=['--bar','--bar-ink','--accent','--on-accent','--accent-soft','--fab','--page','--bg','--card','--ink','--muted','--line','--good','--bad'];
+  if(TH.preset==='auto'&&!Object.keys(TH.over||{}).length){names.forEach(function(n){r.removeProperty(n)});root.removeAttribute('data-theme')}
+  else{var v=thVals(),dark=lum(v.bg)<.2;
+    r.setProperty('--bar',v.bar);r.setProperty('--bar-ink',onC(v.bar));r.setProperty('--accent',v.accent);r.setProperty('--on-accent',onC(v.accent));
+    r.setProperty('--accent-soft',mix(v.card,v.accent,dark?.28:.14));r.setProperty('--fab',v.fab);r.setProperty('--page',v.page);r.setProperty('--bg',v.bg);r.setProperty('--card',v.card);r.setProperty('--ink',v.ink);
+    r.setProperty('--muted',mix(v.ink,v.bg,.42));r.setProperty('--line',mix(v.card,v.ink,.13));r.setProperty('--good',dark?'#5BC26A':'#2E8B3A');r.setProperty('--bad',dark?'#FF7B73':'#D8312B');
+    root.setAttribute('data-theme',dark?'dark':'light')}
+  if(app)app.style.zoom=TH.size&&TH.size!==1?TH.size:'';
+  try{if(window.AndroidApp&&AndroidApp.setBars){var w=thVals();AndroidApp.setBars(getComputedStyle(root).getPropertyValue('--bar').trim()||w.bar,getComputedStyle(root).getPropertyValue('--bg').trim()||w.bg)}}catch(e){}
+}
+function themeH(){
+  var v=thVals();
+  return '<section class="cd" id="theme"><div class="sh"><span class="si">'+ic('tune')+'</span><span>Оформление</span></div>'+
+    '<div class="note" style="margin-bottom:6px">Готовые темы</div><div class="chips">'+Object.keys(PRE).map(function(k){var p=PRE[k],c=k==='auto'?'linear-gradient(135deg,#2D9CD8 50%,#121519 50%)':p.bar;
+      return '<button class="chip thc" data-act="thp" data-v="'+k+'" aria-pressed="'+(TH.preset===k&&!Object.keys(TH.over||{}).length)+'"><i style="background:'+c+'"></i>'+p.n+'</button>'}).join('')+'</div>'+
+    '<div class="note" style="margin:14px 0 2px">Свои цвета</div>'+THF.map(function(f){return '<label class="thr"><span>'+f[1]+'</span><input type="color" data-th="'+f[0]+'" value="'+(/^#/.test(v[f[0]])?v[f[0]]:'#2d9cd8')+'"></label>'}).join('')+
+    '<div class="note" style="margin:14px 0 6px">Размер текста</div><div class="chips">'+SIZES.map(function(x){return '<button class="chip" data-act="ths" data-v="'+x[0]+'" aria-pressed="'+((TH.size||1)===x[0])+'" style="font-size:'+(15*x[0])+'px">'+x[1]+'</button>'}).join('')+'</div>'+
+    '<button class="btn t w" style="margin-top:12px" data-act="threset">Вернуть оформление по умолчанию</button></section>';
+}
+document.addEventListener('input',function(e){var k=e.target.dataset&&e.target.dataset.th;if(!k)return;TH.over=TH.over||{};TH.over[k]=e.target.value;saveTh();applyTheme()});
+document.addEventListener('change',function(e){if(e.target.dataset&&e.target.dataset.th)keep()});
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(TH.preset==='auto')applyTheme()})}catch(e){}
+applyTheme();
+
 /* ---------- render ---------- */
 function render(){
   var s=cur(),h;
   if(s.s==='card')h=vCard(s.id);else if(s.s==='form')h=vForm();else if(s.s==='whs')h=vWhs();else if(s.s==='set')h=vSet();
-  else if(SECT[s.s])h=vDocs(SECT[s.s]);else if(s.s==='home')h=vHome();else if(s.s==='bal')h=vBal();else if(s.s==='doc')h=vDoc(s.id);else if(s.s==='dform')h=vDForm();
+  else if(SECT[s.s])h=vDocs(SECT[s.s]);else if(s.s==='home')h=vHome();else if(s.s==='bal')h=vBal();else if(s.s==='open')h=vOpen();else if(s.s==='doc')h=vDoc(s.id);else if(s.s==='dform')h=vDForm();
   else if(s.s==='cash')h=vCash();else if(s.s==='cform')h=vCForm();else if(s.s==='act')h=vAct();else if(s.s==='actp')h=vActP(s.id);
   else h=vList();
   $('#screen').innerHTML=h;
@@ -1244,7 +1393,7 @@ document.addEventListener('click',function(e){
     case 'copybk':{var ta=$('#bk');ta.select();var ok=function(){toast('Данные скопированы')};
       if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(ta.value).then(ok,function(){toast('Выделено. Нажмите «Копировать» в меню телефона')});else toast('Выделено. Нажмите «Копировать» в меню');break}
     case 'restore':try{var o=migrate(JSON.parse($('#rs').value));if(!o)throw 0;S=o;save();toast('Данные восстановлены');render()}catch(er){toast('Не удалось прочитать данные. Вставьте копию целиком')}break;
-    case 'blank':if(!t._a){t._a=1;t.textContent='Нажмите ещё раз: всё удалится';setTimeout(function(){t._a=0;t.textContent='Начать с нуля (всё удалить)'},5000)}else{S={v:2,name:S.name,rate:S.rate,wh:[{id:1,name:'Основной склад'}],products:[],partners:[],docs:[],cash:[],seq:{buy:0,sale:0,cash:0}};save();ui.f={wh:0,st:'all'};ui.q='';ui.exp={};toast('Склад очищен. Добавьте товары кнопкой «+»');top('list')}break;
+    case 'blank':if(!t._a){t._a=1;t.textContent='Нажмите ещё раз: всё удалится';setTimeout(function(){t._a=0;t.textContent='Начать с нуля (всё удалить)'},5000)}else{S={v:2,name:S.name,rate:S.rate,wh:[{id:1,name:'Основной склад'}],products:[],partners:[],docs:[],cash:[],seq:{buy:0,sale:0,cash:0},ob:{date:'',debts:[]}};save();ui.f={wh:0,st:'all'};ui.q='';ui.exp={};toast('Склад очищен. Добавьте товары кнопкой «+»');top('list')}break;
     default:act2(a,t,id);break;
     case 'demo':S=migrate(seed());seedDocs();save();ui.f={wh:0,st:'all'};ui.q='';ui.exp={};toast('Демо-данные возвращены');top('list');break;
   }

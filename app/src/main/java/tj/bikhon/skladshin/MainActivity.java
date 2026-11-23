@@ -93,6 +93,23 @@ public class MainActivity extends Activity {
         }
 
         @JavascriptInterface
+        public void setBars(final String bar, final String bg) {
+            runOnUiThread(() -> {
+                try {
+                    Window w = getWindow();
+                    w.setStatusBarColor(parseCss(bar));
+                    int nav = parseCss(bg);
+                    w.setNavigationBarColor(nav);
+                    web.setBackgroundColor(nav);
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        double l = (0.299 * Color.red(nav) + 0.587 * Color.green(nav) + 0.114 * Color.blue(nav)) / 255.0;
+                        w.getDecorView().setSystemUiVisibility(l > 0.6 ? View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR : 0);
+                    }
+                } catch (Exception ignored) { }
+            });
+        }
+
+        @JavascriptInterface
         public void print() {
             runOnUiThread(() -> {
                 PrintManager pm = (PrintManager) getSystemService(Context.PRINT_SERVICE);
@@ -101,6 +118,16 @@ public class MainActivity extends Activity {
                         new PrintAttributes.Builder().build());
             });
         }
+    }
+
+    /** "#RRGGBB" ё "rgb(r, g, b)" -> ранг */
+    private static int parseCss(String c) {
+        c = c.trim();
+        if (c.startsWith("rgb")) {
+            String[] p = c.substring(c.indexOf('(') + 1, c.indexOf(')')).split(",");
+            return Color.rgb(Integer.parseInt(p[0].trim()), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));
+        }
+        return Color.parseColor(c);
     }
 
     private void toast(String m) { Toast.makeText(this, m, Toast.LENGTH_LONG).show(); }

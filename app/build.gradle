@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.application'
+}
+
+def runNumber = (System.getenv('GITHUB_RUN_NUMBER') ?: '1') as Integer
+
+android {
+    namespace 'tj.bikhon.skladshin'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'tj.bikhon.skladshin'
+        minSdk 23
+        targetSdk 36
+        versionCode runNumber
+        versionName "1.${runNumber}"
+    }
+
+    // Калиди санҷишӣ (танҳо барои APK-и санҷишӣ)
+    signingConfigs {
+        release {
+            storeFile file('sklad.keystore')
+            storePassword 'skladshin'
+            keyAlias 'sklad'
+            keyPassword 'skladshin'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

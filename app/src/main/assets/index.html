@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="ru"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Чарх</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
@@ -29,7 +29,7 @@ html,body{height:100%}
 body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.35 var(--font);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
 h1,h2,p{margin:0}
 button{font:inherit;color:inherit}
-.app{position:relative;max-width:480px;height:100vh;height:100dvh;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
+.app{position:relative;max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
 @media (min-width:520px){.app{box-shadow:0 10px 44px rgba(0,0,0,.22)}}
 #screen{display:flex;flex-direction:column;flex:1;min-height:0}
 .ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -257,6 +257,29 @@ textarea{width:100%;min-height:90px;resize:vertical;border:1px solid var(--line)
 .bh{margin:14px 0 4px;font:500 14px var(--font);color:var(--accent)}
 .okb{display:inline-block;margin-top:12px;padding:4px 10px;border-radius:12px;background:rgba(46,139,58,.14);color:var(--good);font:500 13px var(--font)}
 .pos{color:var(--good)}
+.pkb{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:46px;padding:8px 0;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:400 16px var(--font);text-align:left;cursor:pointer}
+.pkb span{flex:1;min-width:0;overflow-wrap:anywhere}.pkb .ic{flex:none;width:18px;height:18px;color:var(--muted)}
+.pks{display:flex;flex-direction:column;max-height:86%;padding-top:14px}
+.pkh{display:flex;flex-direction:column;gap:2px;margin-bottom:10px}.pkh b{font:500 18px var(--font)}.pkh small{color:var(--muted);font-size:13px}
+#pkq{width:100%;min-height:46px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:400 16px var(--font);box-sizing:border-box}
+#pkl{flex:1;min-height:120px;overflow-y:auto;margin-top:8px;-webkit-overflow-scrolling:touch}
+.pki{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:52px;padding:8px 4px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:400 15px var(--font);text-align:left;cursor:pointer}
+.pki span{flex:1;min-width:0;overflow-wrap:anywhere}.pki b{white-space:nowrap;font-weight:500;color:var(--good)}.pki b.muted{color:var(--muted)}
+.pki:active{background:var(--accent-soft)}
+.sug{display:flex;flex-wrap:wrap;gap:6px}.sug:not(:empty){margin:8px 0 4px}
+.mvsel{display:flex;flex-direction:column}
+.mvarr{display:flex;justify-content:center;color:var(--accent);margin:-2px 0}.mvarr .ic{width:26px;height:26px}
+.exr{cursor:pointer}.exr.z{color:var(--muted)}.exr small{color:var(--muted)}
+.exl{background:var(--bg);border-radius:8px;padding:4px 10px;margin-bottom:6px;font-size:13.5px}
+.exl div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}.exl div:last-child{border-bottom:0}
+.exl span:last-child{white-space:nowrap}
+.start .stp{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 0;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);font:500 15.5px var(--font);text-align:left;cursor:pointer}
+.start .stp:first-of-type{margin-top:8px}
+.start .stp i{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);font:500 14px var(--font);font-style:normal}
+.start .stp.ok i{background:var(--good)}
+.start .stp small{display:block;font:400 13px var(--font);color:var(--muted);margin-top:2px}
+.sc{padding-bottom:24px}
+.seg2 button{min-width:0;padding:0 4px;font-size:14.5px}
 
 </style>
 <style>
@@ -304,6 +327,8 @@ var I={
   inbox:'<path d="M4 13l2.5-7h11L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 13h4.5l1 2.5h5l1-2.5H20"/>',
   wallet:'<path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"/><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M20.5 12.5h-4a1.8 1.8 0 0 0 0 3.6h4"/>',
   edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/>',
+  chev:'<path d="M6 9l6 6 6-6"/>',
+  arrdown:'<path d="M12 4v15M6 13l6 6 6-6"/>',
   chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
   move:'<path d="M3 8h14l-3-3M21 16H7l3 3"/><rect x="2" y="10" width="5" height="4" rx="1"/><rect x="17" y="10" width="5" height="4" rx="1"/>',
   truck:'<path d="M3 6h11v10H3zM14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>',
@@ -366,14 +391,22 @@ function seed(){
 function migrate(o){
   if(!(o&&(o.v===1||o.v===2)&&o.wh&&o.products))return null;
   if(o.name==='Склад шин')o.name='Чарх';
+  (o.cash||[]).forEach(function(c){if(c.cat==='Прочий расход')c.cat='Другие расходы'});
   o.ob=o.ob||{date:'',debts:[]};
   o.partners=o.partners||[];o.docs=o.docs||[];o.cash=o.cash||[];o.seq=o.seq||{buy:0,sale:0,cash:0};o.v=2;
   return o;
 }
 function load(){try{var s=localStorage.getItem(KEY);if(s)return migrate(JSON.parse(s))}catch(e){}return null}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
-var S=load();
-if(!S){S=migrate(seed());S._demo=1}
+/* empty database; warehouses named after the client's two stores (can be renamed in «Склады») */
+function emptyData(keep){
+  keep=keep||{};
+  return {v:2,name:keep.name||'Чарх',rate:keep.rate||10.73,wh:keep.wh||[{id:1,name:'Склад Ҳисор'},{id:2,name:'Склад Душанбе'}],products:[],partners:[],docs:[],cash:[],seq:{buy:0,sale:0,cash:0},ob:{date:'',debts:[]}};
+}
+var EPOCH='3',EPK='charkh-epoch';
+var S=null;
+try{if(localStorage.getItem(EPK)===EPOCH)S=load();else{localStorage.removeItem(KEY);localStorage.setItem(EPK,EPOCH)}}catch(e){S=load()}
+if(!S){S=emptyData();save()}
 
 var ui={nav:[{s:'home'}],q:'',search:false,f:{wh:0,st:'all'},exp:{},ov:null,form:null,lscroll:0,drawer:false};
 function prod(id){for(var i=0;i<S.products.length;i++)if(S.products[i].id===id)return S.products[i];return null}
@@ -390,26 +423,30 @@ function allIds(){return S.wh.map(function(w){return w.id})}
 var tt;
 function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2800)}
 
-/* ---------- navigation (works with the phone's Back button) ---------- */
+/* ---------- navigation (works with the phone's Back button) ----------
+   In the Android app (window.AndroidApp) the phone's Back button calls window.charkhBack(),
+   so browser history is not used there at all. In a normal browser history.pushState is used. */
+var NATIVE=!!window.AndroidApp;
 function cur(){return ui.nav[ui.nav.length-1]}
 function push(s){
   if(cur().s==='list'){var sc=$('.sc');ui.lscroll=sc?sc.scrollTop:0}
   var e=s;e.h=false;
-  try{history.pushState({d:ui.nav.length},'');e.h=true}catch(x){}
+  if(!NATIVE){try{history.pushState({d:ui.nav.length},'');e.h=true}catch(x){}}
   ui.nav.push(e);render();
 }
 function back(){
   if(ui.nav.length<2)return;
-  if(cur().h){try{history.back();return}catch(x){}}
+  if(!NATIVE&&cur().h){try{history.back();return}catch(x){}}
   ui.nav.pop();render();
 }
 function popTo(len){
   var k=0;
   while(ui.nav.length>len){if(ui.nav.pop().h)k++}
-  if(k>0){ui.skip=true;try{history.go(-k)}catch(x){ui.skip=false}}
+  if(k>0&&!NATIVE){ui.skip=true;try{history.go(-k)}catch(x){ui.skip=false}}
   render();
 }
 window.addEventListener('popstate',function(){
+  if(NATIVE)return;
   if(ui.skip){ui.skip=false;return}
   if(ui.ov||ui.drawer){
     if(ui.ov){ui.ov=null;ovl()}else closeDrawer();
@@ -418,6 +455,18 @@ window.addEventListener('popstate',function(){
   }
   if(ui.nav.length>1&&cur().h){ui.nav.pop();render()}
 });
+/* Back button of the phone: true = handled inside the app, false = the app may close */
+window.charkhBack=function(){
+  try{
+    if(ui.ov){ui.ov=null;ovl();return true}
+    if(ui.drawer){closeDrawer();return true}
+    if(ui.nav.length>1){
+      var c=cur();if(c.s==='dform')ui.df=null;if(c.s==='cform')ui.cf=null;if(c.s==='form')ui.form=null;if(c.s==='open')ui.ob=null;
+      ui.nav.pop();render();return true}
+    if(cur().s!=='home'){top('home');return true}
+  }catch(e){}
+  return false;
+};
 function top(s){ui.nav=[{s:s}];ui.form=null;ui.df=null;ui.cf=null;closeDrawer();render()}
 
 /* ---------- list ---------- */
@@ -486,6 +535,7 @@ function vCard(id){
   '<section class="cd"><div class="sh"><span class="si">'+ic('inbox')+'</span><span>Остатки, шт</span></div>'+
     '<div class="tg th"><span>Доступно</span><span>Остаток</span><span>Резерв</span><span>Ожидание</span></div>'+
     trow('Всего',T.a,T.q,T.r,T.w,true)+rows+fl('Себестоимость',money(p.cost,'TJS'))+'</section>'+
+  '<div class="qa"><button class="on" data-act="pquick" data-v="sale">'+ic('sell')+'Продать</button><button data-act="pquick" data-v="buy">'+ic('truck')+'Закупить</button><button data-act="pquick" data-v="move">'+ic('move')+'Переместить</button></div>'+
   '<section class="cd"><div class="sh"><span class="si">'+ic('wallet')+'</span><span>Цены</span></div>'+
     fl('Минимальная',money(p.min,'TJS'))+fl('Цена закупки',money(p.buy,p.cur))+fl('оптом',money(p.opt,'TJS'))+fl('Цена продажи',money(p.price,'TJS'))+'</section>'+
   '</div></div>';
@@ -525,7 +575,8 @@ function saveForm(){
   var code=(d.code||'').trim()||nextCode();
   if(S.products.some(function(p){return p.code===code&&p.id!==F.id}))return toast('Код '+code+' уже занят');
   var buy=num(d.buy),cost=d.cost===''?(d.cur==='USD'?Math.round(buy*S.rate):buy):num(d.cost);
-  var st={};S.wh.forEach(function(w){var s=d.st[w.id]||{};st[w.id]={q:Math.round(num(s.q)),r:Math.round(num(s.r)),w:Math.round(num(s.w))}});
+  var st={},ng=false;S.wh.forEach(function(w){var s=d.st[w.id]||{};st[w.id]={q:Math.round(num(s.q)),r:Math.round(num(s.r)),w:Math.round(num(s.w))};if(st[w.id].q<0||st[w.id].r<0||st[w.id].w<0)ng=true});
+  if(ng)return toast('Остаток не может быть меньше нуля');
   var o={code:code,name:name,barcode:(d.barcode||'').trim(),cost:cost,buy:buy,cur:d.cur,min:num(d.min),opt:num(d.opt),price:num(d.price),st:st};
   var p;
   if(F.id){p=prod(F.id);for(var k in o)p[k]=o[k]}
@@ -554,7 +605,7 @@ function vSet(){
   '<section class="cd"><div class="sh"><span>Резервная копия</span></div><p class="note" style="margin-bottom:8px">Данные хранятся только в этом браузере. Скопируйте их и сохраните, чтобы не потерять или перенести на другое устройство.</p>'+
   '<textarea id="bk" readonly aria-label="Данные для копирования">'+esc(JSON.stringify(S))+'</textarea><div class="acts" style="margin-top:8px"><button class="btn t" data-act="copybk">Скопировать</button></div>'+
   '<textarea id="rs" placeholder="Вставьте сюда ранее скопированные данные" aria-label="Данные для восстановления" style="margin-top:8px"></textarea><div class="acts" style="margin-top:8px"><button class="btn t" data-act="restore">Восстановить</button></div></section>'+
-  '<section class="cd"><div class="sh"><span>Данные</span></div><div class="acts" style="margin:0;justify-content:flex-start;flex-wrap:wrap"><button class="btn t" data-act="blank">Начать с нуля (всё удалить)</button><button class="btn t" data-act="demo">Вернуть демо-данные</button></div></section>'+
+  '<section class="cd"><div class="sh"><span>Данные</span></div><div class="acts" style="margin:0;justify-content:flex-start;flex-wrap:wrap"><button class="btn d" data-act="blank">Удалить все данные</button></div></section>'+
   '</div></div>';
 }
 
@@ -611,7 +662,8 @@ var DT={buy:{pre:'З',one:'Закупка',list:'Закупка',who:'Поста
         open:{pre:'НО',one:'Начальный остаток',list:'Начальные остатки',who:'',sec:'set',nw:''},
         move:{pre:'П',one:'Перемещение',list:'Перемещение',who:'',sec:'moves',nw:'Новое перемещение'}};
 var SECT={buys:'buy',sales:'sale',moves:'move'};
-var CATS={in:['Оплата от клиента','Продажа за наличные','Взнос владельца','Прочий приход'],out:['Оплата поставщику','Зарплата','Аренда','Расходы склада','Прочий расход','Изъятие владельца']};
+var EXPC=['Налог','Аренда','Зарплата','Обед','Интернет','Транспорт','Коммунальные расходы','Другие расходы'];
+var CATS={in:['Оплата от клиента','Продажа за наличные','Взнос владельца','Прочий приход'],out:EXPC.concat(['Оплата поставщику','Изъятие владельца'])};
 ui.dq='';ui.dp='all';ui.cfil='all';ui.cp='all';ui.aq='';ui.ap={from:'',to:''};ui.df=null;ui.cf=null;
 
 function docById(id){for(var i=0;i<S.docs.length;i++)if(S.docs[i].id===id)return S.docs[i];return null}
@@ -681,8 +733,21 @@ function csv(name,head,rows){
 function DOCSEC(){var c=cur();if(c.s==='doc'){var d=docById(c.id);return d?DT[d.type].sec:'sales'}if(c.s==='dform'&&ui.df)return DT[ui.df.d.type].sec;return 'sales'}
 function whOpts(sel){return S.wh.map(function(w){return '<option value="'+w.id+'"'+(+sel===w.id?' selected':'')+'>'+esc(w.name)+'</option>'}).join('')}
 function curOpts(sel){return '<option value="TJS"'+(sel!=='USD'?' selected':'')+'>TJS (сомони)</option><option value="USD"'+(sel==='USD'?' selected':'')+'>USD (доллар)</option>'}
-function pdl(){return '<datalist id="padl">'+S.partners.map(function(p){return '<option value="'+esc(p.name)+'">'}).join('')+'</datalist>'}
-function gf(label,key,val,o){o=o||{};return '<div class="fi"><label for="g-'+key+'">'+label+'</label><input id="g-'+key+'" data-g="'+key+'" value="'+esc(val)+'"'+(o.type?' type="'+o.type+'"':'')+' inputmode="'+(o.mode||'text')+'" autocomplete="off"'+(o.list?' list="'+o.list+'"':'')+(o.ph?' placeholder="'+esc(o.ph)+'"':'')+'></div>'}
+function pdl(){return ''}
+/* product field: a button that opens our own searchable list (works on every phone) */
+function pfield(label,key,val,wh,mode){
+  return '<div class="fi"><label>'+label+'</label><button type="button" class="pkb" data-act="pick" data-k="'+key+'" data-w="'+(wh||0)+'" data-m="'+mode+'">'+(val?'<span>'+esc(val)+'</span>':'<span class="muted">Нажмите, чтобы выбрать шину</span>')+ic('chev')+'</button></div>';
+}
+/* name field with suggestions from existing clients / suppliers */
+function nfield(label,key,val,ph){
+  return '<div class="fi"><label for="g-'+key+'">'+label+'</label><input id="g-'+key+'" data-g="'+key+'" data-sug="1" value="'+esc(val)+'" autocomplete="off" placeholder="'+esc(ph||'')+'"></div><div class="sug" id="sug-'+key.replace(/\./g,'-')+'"></div>';
+}
+function updSug(t){
+  var box=document.getElementById('sug-'+t.dataset.g.replace(/\./g,'-'));if(!box)return;
+  var q=pkey(t.value),L=S.partners.filter(function(p){var k=pkey(p.name);return k!==q&&(!q||k.indexOf(q)>=0)}).slice(0,6);
+  box.innerHTML=document.activeElement===t&&L.length?L.map(function(p){return '<button type="button" class="chip" data-act="sugset" data-k="'+t.dataset.g+'" data-v="'+esc(p.name)+'">'+esc(p.name)+'</button>'}).join(''):'';
+}
+function gf(label,key,val,o){o=o||{};return '<div class="fi"><label for="g-'+key+'">'+label+'</label><input id="g-'+key+'" data-g="'+key+'" value="'+esc(val)+'"'+(o.type?' type="'+o.type+'"':'')+' inputmode="'+(o.mode||'text')+'" autocomplete="off"'+(o.ph?' placeholder="'+esc(o.ph)+'"':'')+'></div>'}
 
 /* ---------- document lists ---------- */
 function docRows(type){
@@ -759,21 +824,31 @@ function defPrice(p,d){
   return p.cur==='USD'?r2(p.buy*rate):r2(p.buy/rate);
 }
 function dTotal(d){return r2(d.items.reduce(function(s,L){return s+num(L.qty)*num(L.price)},0))}
+/* how many of product p can be taken from warehouse wh by the document being edited */
+function availFor(p,wh){
+  var q=stOf(p,wh).q,F=ui.df;
+  if(F&&F.id){var od=docById(F.id);if(od&&(od.type==='sale'||od.type==='move')&&od.wh===wh)od.items.forEach(function(it){if(it.pid===p.id)q+=it.qty})}
+  return q;
+}
+function stockLine(L,d){
+  var p=findProd(L.prod);if(!p)return L.prod?'<div class="lsum neg">Шина не найдена — выберите из списка</div>':'';
+  var out=d.type==='sale'||d.type==='move',a=out?availFor(p,+d.wh):stOf(p,+d.wh).q,used=0;
+  if(out)d.items.forEach(function(x){if(findProd(x.prod)===p)used+=Math.round(num(x.qty))});
+  return '<div class="lsum">На складе «'+esc(whName(+d.wh))+'»: <b class="'+(a<=0?'neg':'')+'">'+a+' шт</b>'+(out&&used>a?' <b class="neg">— столько нет, уменьшите количество</b>':'')+'</div>';
+}
 function lineH(L,i,d){
-  var p=findProd(L.prod),st='';
-  if(p){var q=stOf(p,+d.wh).q;st='<div class="lsum">На складе «'+esc(whName(+d.wh))+'»: <b class="'+(q<=0?'neg':'')+'">'+q+' шт</b></div>'}
-  else if(L.prod)st='<div class="lsum neg">Товар не найден — выберите из списка</div>';
+  var st=stockLine(L,d);
   return '<div class="ln">'+(d.items.length>1?'<button class="ib x" data-act="dlrm" data-i="'+i+'" aria-label="Убрать строку">'+ic('close')+'</button>':'')+
-    gf('Товар','it.'+i+'.prod',L.prod,{list:'pdl',ph:'Код или название'})+st+
+    pfield('Шина','it.'+i+'.prod',L.prod,d.wh,d.type==='sale'?'avail':'all')+'<div id="lst'+i+'">'+st+'</div>'+
     '<div class="lnf">'+gf('Кол-во, шт','it.'+i+'.qty',L.qty,{mode:'decimal'})+gf('Цена, '+CU(d.cur),'it.'+i+'.price',L.price,{mode:'decimal'})+
     '<div class="fi"><label>Сумма</label><div style="min-height:44px;display:flex;align-items:center;font-size:16px" id="ls'+i+'">'+f2(num(L.qty)*num(L.price))+'</div></div></div></div>';
 }
 function vDForm(){
   var F=ui.df;if(!F)return vDocs('sale');if(F.d.type==='move')return vMForm();var d=F.d,T=DT[d.type],tot=dTotal(d),rest=r2(tot-num(d.paid));
-  var dl='<datalist id="pdl">'+S.products.map(function(p){return '<option value="'+esc(p.code+' · '+p.name)+'">'}).join('')+'</datalist>'+pdl();
+  var dl='';
   return '<header class="bar"><button class="ib" data-act="back" aria-label="Назад">'+ic('back')+'</button><h1 class="bt">'+(F.id?T.one+' '+esc((docById(F.id)||{}).no||''):T.nw)+'</h1><button class="ib" data-act="dsave" aria-label="Сохранить">'+ic('check')+'</button></header>'+dl+
   '<div class="sc"><div class="pg">'+
-  '<section class="cd">'+gf(T.who,'partner',d.partner,{list:'padl',ph:d.type==='sale'?'Имя клиента':'Например, Шамсулло баллон'})+
+  '<section class="cd">'+nfield(T.who,'partner',d.partner,d.type==='sale'?'Имя клиента':'Имя или название поставщика')+
     '<div class="fi2">'+gf('Дата','date',d.date,{type:'date'})+'<div class="fi"><label>Номер</label><div style="min-height:44px;display:flex;align-items:center;color:var(--muted)">'+(F.id?esc(docById(F.id).no):'присвоится сам')+'</div></div></div>'+
     '<div class="fi"><label for="g-wh">'+(d.type==='sale'?'Со склада':'На склад')+'</label><select id="g-wh" data-g="wh">'+whOpts(d.wh)+'</select></div>'+
     '<div class="fi2"><div class="fi"><label for="g-cur">Валюта</label><select id="g-cur" data-g="cur">'+curOpts(d.cur)+'</select></div>'+gf('Курс USD','rate',d.rate,{mode:'decimal'})+'</div></section>'+
@@ -793,7 +868,7 @@ function restTxt(d,rest){
 }
 function updTot(){
   var d=ui.df&&ui.df.d;if(!d)return;
-  d.items.forEach(function(L,i){var e=$('#ls'+i);if(e)e.textContent=f2(num(L.qty)*num(L.price))});
+  d.items.forEach(function(L,i){var e=$('#ls'+i);if(e)e.textContent=f2(num(L.qty)*num(L.price));var g=$('#lst'+i);if(g)g.innerHTML=stockLine(L,d)});
   var t=dTotal(d),e=$('#dtot');if(e)e.textContent=mon(t,d.cur);
   var r=$('#drest');if(r)r.innerHTML=restTxt(d,r2(t-num(d.paid)));
 }
@@ -806,6 +881,9 @@ function saveDoc(){
     var q=Math.round(num(L.qty));if(q<=0){bad=bad||'Количество должно быть больше нуля';return}items.push({pid:p.id,qty:q,price:r2(num(L.price))});if(d.type==='sale')items[items.length-1].cost=p.cost||0});
   if(bad)return toast(bad);
   if(!items.length)return toast('Добавьте хотя бы один товар');
+  if(d.type==='sale'){var need={};items.forEach(function(it){need[it.pid]=(need[it.pid]||0)+it.qty});
+    for(var np in need){var pp=prod(+np),av=availFor(pp,+d.wh);if(need[np]>av)return toast('Недостаточно на складе «'+whName(+d.wh)+'»: '+pp.name+' — есть '+av+' шт')}}
+  var snap=JSON.stringify(S),before=stockMap();
   var rate=num(d.rate);if(d.cur==='USD'&&!(rate>0))return toast('Укажите курс доллара');if(!(rate>0))rate=S.rate;
   var tot=r2(items.reduce(function(s,it){return s+it.qty*it.price},0)),paid=r2(num(d.paid));
   if(paid<0)return toast('Оплата не может быть меньше нуля');
@@ -817,7 +895,7 @@ function saveDoc(){
   /* purchase: new cost = weighted average of stock on hand and the new batch */
   if(doc.type==='buy')items.forEach(function(it){var p=prod(it.pid),pt=doc.cur==='USD'?it.price*rate:it.price,all=agg(p,allIds()).q,before=all-it.qty;
     p.buy=it.price;p.cur=doc.cur;p.cost=Math.round(before>0&&p.cost>0&&!F.id?(before*p.cost+it.qty*pt)/all:pt)});
-  var neg=doc.type==='sale'&&items.some(function(it){return stOf(prod(it.pid),doc.wh).q<0});
+  var neg=false,nb=negNew(before);if(nb){S=JSON.parse(snap);return toast(NEGMSG+nb+'. Эти шины уже проданы или перемещены')}
   save();ui.df=null;
   toast(neg?'Сохранено. Внимание: остаток на складе ушёл в минус':(F.id?'Изменения сохранены':DT[doc.type].one+' '+doc.no+' сохранена'));
   if(F.id)popTo(ui.nav.length-1);else{var tp=cur();ui.nav[ui.nav.length-1]={s:'doc',id:doc.id,h:tp.h};render()}
@@ -843,19 +921,18 @@ function vMove(d){
     '<div class="tot"><span>Всего</span><span>'+docQty(d)+' шт</span></div></section></div></div>';
 }
 function mLineH(L,i,d){
-  var p=findProd(L.prod),st='';
-  if(p){var q=stOf(p,+d.wh).q;st='<div class="lsum">На складе «'+esc(whName(+d.wh))+'»: <b class="'+(q<=0?'neg':'')+'">'+q+' шт</b></div>'}
-  else if(L.prod)st='<div class="lsum neg">Товар не найден — выберите из списка</div>';
   return '<div class="ln">'+(d.items.length>1?'<button class="ib x" data-act="dlrm" data-i="'+i+'" aria-label="Убрать строку">'+ic('close')+'</button>':'')+
-    gf('Товар','it.'+i+'.prod',L.prod,{list:'pdl',ph:'Код или название'})+st+gf('Кол-во, шт','it.'+i+'.qty',L.qty,{mode:'decimal'})+'</div>';
+    pfield('Шина','it.'+i+'.prod',L.prod,d.wh,'avail')+'<div id="lst'+i+'">'+stockLine(L,d)+'</div>'+gf('Сколько переместить, шт','it.'+i+'.qty',L.qty,{mode:'decimal'})+'</div>';
 }
 function vMForm(){
   var F=ui.df,d=F.d;
-  var dl='<datalist id="pdl">'+S.products.map(function(p){return '<option value="'+esc(p.code+' · '+p.name)+'">'}).join('')+'</datalist>';
+  var dl='';
   return '<header class="bar"><button class="ib" data-act="back" aria-label="Назад">'+ic('back')+'</button><h1 class="bt">'+(F.id?'Перемещение '+esc((docById(F.id)||{}).no||''):'Новое перемещение')+'</h1><button class="ib" data-act="dsave" aria-label="Сохранить">'+ic('check')+'</button></header>'+dl+
   '<div class="sc"><div class="pg"><section class="cd">'+
-    '<div class="fi"><label for="g-wh">Со склада</label><select id="g-wh" data-g="wh">'+whOpts(d.wh)+'</select></div>'+
-    '<div class="fi"><label for="g-wh2">На склад</label><select id="g-wh2" data-g="wh2">'+whOpts(d.wh2)+'</select></div>'+
+    (S.wh.length<2?'<p class="note neg" style="margin-bottom:8px">Для перемещения нужно минимум два склада. Добавьте склад в разделе «Склады».</p>':'')+
+    '<div class="mvsel"><div class="fi"><label for="g-wh">Из какого склада</label><select id="g-wh" data-g="wh">'+whOpts(d.wh)+'</select></div>'+
+    '<div class="mvarr">'+ic('arrdown')+'</div>'+
+    '<div class="fi"><label for="g-wh2">В какой склад</label><select id="g-wh2" data-g="wh2">'+whOpts(d.wh2)+'</select></div></div>'+
     (d.wh===d.wh2?'<p class="note neg">Выберите разные склады.</p>':'')+gf('Дата','date',d.date,{type:'date'})+'</section>'+
   '<section class="cd"><div class="sh"><span class="si">'+ic('box')+'</span><span>Какие шины перенести</span></div>'+d.items.map(function(L,i){return mLineH(L,i,d)}).join('')+
     '<button class="btn t w" style="margin-top:8px" data-act="dladd">+ Добавить товар</button></section>'+
@@ -869,15 +946,18 @@ function saveMove(){
   d.items.forEach(function(L){if(!L.prod&&!num(L.qty))return;var p=findProd(L.prod);if(!p){bad=bad||'Товар «'+(L.prod||'?')+'» не найден';return}
     var q=Math.round(num(L.qty));if(q<=0){bad=bad||'Количество должно быть больше нуля';return}items.push({pid:p.id,qty:q,price:0})});
   if(bad)return toast(bad);if(!items.length)return toast('Добавьте хотя бы один товар');
+  var need={};items.forEach(function(it){need[it.pid]=(need[it.pid]||0)+it.qty});
+  for(var np in need){var pp=prod(+np),av=availFor(pp,+d.wh);if(need[np]>av)return toast('Недостаточно на складе «'+whName(+d.wh)+'»: '+pp.name+' — есть '+av+' шт')}
+  var snap=JSON.stringify(S),before=stockMap();
   var o={type:'move',date:d.date||today(),partner:0,wh:+d.wh,wh2:+d.wh2,cur:'TJS',rate:S.rate,items:items,comment:(d.comment||'').trim()},doc;
   if(F.id){doc=docById(F.id);applyDoc(doc,-1);for(var k in o)doc[k]=o[k];applyDoc(doc,1)}else doc=addDoc(o,0);
-  var neg=items.some(function(it){return stOf(prod(it.pid),doc.wh).q<0});
+  var neg=false,nb=negNew(before);if(nb){S=JSON.parse(snap);return toast(NEGMSG+nb)}
   save();ui.df=null;toast(neg?'Сохранено. Внимание: на складе «'+whName(doc.wh)+'» остаток ушёл в минус':(F.id?'Изменения сохранены':'Перемещение '+doc.no+' сохранено'));
   if(F.id)popTo(ui.nav.length-1);else{var tp=cur();ui.nav[ui.nav.length-1]={s:'doc',id:doc.id,h:tp.h};render()}
 }
 
 /* ---------- accounting: profit, balance sheet, cash flow ---------- */
-var EXP=['Зарплата','Аренда','Расходы склада','Прочий расход'];
+var EXP=EXPC.concat(['Расходы склада','Прочий расход']);
 var OTHER_IN=['Продажа за наличные','Прочий приход'];
 var MON=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
 var MONG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
@@ -935,6 +1015,23 @@ function vBal(){
       (r.oth?'<div class="bh">Прочие доходы</div>'+Object.keys(r.othBy).map(function(c){return row(esc(c),r.othBy[c])}).join(''):'')+
       row('<b>'+(r.net>=0?'Чистая прибыль':'Чистый убыток')+'</b>','<b class="'+(r.net<0?'neg':'pos')+'">'+nf(r.net)+' сом.</b>',{c:'tt',raw:1})+
       (r.rev?'<p class="note" style="margin-top:8px">Рентабельность продаж: '+f2(r.net/r.rev*100)+'%</p>':'');
+  }else if(T==='exp'){
+    /* every expense category separately, then total money in / out and the result */
+    var by={},cnt={},ops={},totE=0,inAll=0,outAll=0,sup=0,ow=0;
+    EXPC.forEach(function(c){by[c]=0;cnt[c]=0;ops[c]=[]});
+    S.cash.forEach(function(c){if(c.date<R.from||c.date>end||c.dir==='tr'||c.open)return;var v=tj(c.amount,c.cur);
+      if(c.dir==='in')inAll+=v;else{outAll+=v;var k=EXPC.indexOf(c.cat)>=0?c.cat:(EXP.indexOf(c.cat)>=0?'Другие расходы':null);
+        if(k){by[k]+=v;cnt[k]++;ops[k].push(c);totE+=v}else if(c.cat==='Оплата поставщику')sup+=v;else ow+=v}});
+    var pr=pnl(R.from,end);ttl='Расходы по статьям';
+    body=EXPC.map(function(c){var open=ui.ex===c&&cnt[c];
+      return '<div class="br exr'+(cnt[c]?'':' z')+'" data-act="exopen" data-v="'+esc(c)+'"><span>'+esc(c)+(cnt[c]?' <small>('+cnt[c]+')</small>':'')+'</span><span>'+nf(by[c])+' сом.</span></div>'+
+        (open?'<div class="exl">'+ops[c].sort(function(a,b){return a.date<b.date?1:-1}).map(function(o){return '<div><span>'+fd(o.date)+' · '+esc(o.comment||pName(o.partner)||ACC[o.acc||'cash'])+'</span><span>'+f2(o.amount)+' '+CU(o.cur)+'</span></div>'}).join('')+'</div>':'')}).join('')+
+      row('<b>Итого расходов</b>','<b class="neg">'+nf(totE)+' сом.</b>',{c:'tt',raw:1})+
+      '<div class="bh">Итоги за период</div>'+row('Общий приход денег',inAll)+row('Общий расход денег',outAll)+
+      '<div class="br" style="border-top:0;padding-top:0"><span><small>в том числе: расходы '+nf(totE)+', поставщикам '+nf(sup)+(ow?', владельцу '+nf(ow):'')+'</small></span><span></span></div>'+
+      row('Выручка от продаж',pr.rev)+row('Себестоимость проданных шин',-pr.cogs)+row('Расходы',-totE)+
+      row('<b>'+(pr.net>=0?'Доход (чистая прибыль)':'Убыток')+'</b>','<b class="'+(pr.net<0?'neg':'pos')+'">'+nf(pr.net)+' сом.</b>',{c:'tt',raw:1})+
+      '<p class="note" style="margin-top:8px">Нажмите на статью, чтобы увидеть все расходы по ней. Новый расход: «Касса и банк» → «+» → «Расход».</p>';
   }else{
     var op=tjsOf(cashBal(dayBefore(R.from))),inn={},out={},si=0,so=0,oi=0;
     S.cash.forEach(function(c){if(c.date<R.from||c.date>end||c.dir==='tr')return;if(c.open){oi+=tj(c.amount,c.cur);return}var v=tj(c.amount,c.cur);if(c.dir==='in'){inn[c.cat]=(inn[c.cat]||0)+v;si+=v}else{out[c.cat]=(out[c.cat]||0)+v;so+=v}});
@@ -947,10 +1044,10 @@ function vBal(){
   var nextOk=R.to<today();
   var seg=function(act,cur,items){return '<div class="seg2">'+items.map(function(x){return '<button data-act="'+act+'" data-v="'+x[0]+'" aria-pressed="'+(cur===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'};
   return '<header class="bar"><button class="ib" data-act="drawer" aria-label="Меню">'+ic('menu')+'</button><h1 class="bt">Баланс и отчёты</h1><button class="ib" data-act="aprint" aria-label="Печать">'+ic('print')+'</button></header>'+
-  '<div class="sc"><div class="pg">'+seg('btab',T,[['bal','Баланс'],['pl','ОПиУ'],['cf','ДДС']])+seg('bper',ui.bp,[['day','День'],['month','Месяц'],['year','Год']])+
+  '<div class="sc"><div class="pg">'+seg('btab',T,[['bal','Баланс'],['pl','ОПиУ'],['cf','ДДС'],['exp','Расходы']])+seg('bper',ui.bp,[['day','День'],['month','Месяц'],['year','Год']])+
   '<div class="pnav"><button class="ib" data-act="bprev" aria-label="Назад">'+ic('back')+'</button><b>'+R.lb+'</b><button class="ib" data-act="bnext" aria-label="Вперёд" '+(nextOk?'':'disabled')+' style="transform:scaleX(-1)">'+ic('back')+'</button></div>'+
   '<section class="cd"><div class="ti" style="margin-bottom:6px">'+ttl+'</div>'+body+'</section>'+
-  '<p class="note" style="padding:0 4px">Суммы в сомони; доллары пересчитаны по курсу '+f2(S.rate)+' (продажи и закупки — по курсу документа). ОПиУ — отчёт о прибылях и убытках, ДДС — движение денежных средств.</p></div></div>';
+  '<p class="note" style="padding:0 4px">Суммы в сомони; доллары пересчитаны по курсу '+f2(S.rate)+' (продажи и закупки — по курсу документа). ОПиУ — отчёт о прибылях и убытках, ДДС — движение денежных средств, Расходы — каждая статья отдельно.</p></div></div>';
 }
 
 /* ---------- home screen (главная) ---------- */
@@ -982,6 +1079,10 @@ function vHome(){
   return '<header class="bar"><button class="ib" data-act="drawer" aria-label="Меню">'+ic('menu')+'</button><h1 class="bt">'+esc(S.name)+'</h1><button class="ib" data-act="rate" aria-label="Курс доллара">'+ic('rate')+'</button></header>'+
   '<div class="sc"><div class="pg">'+
   '<div class="hd"><h2>'+WD[d0.getDay()]+', '+d0.getDate()+' '+MONG[d0.getMonth()]+'</h2><p>Сводка по бизнесу на сегодня.</p></div>'+
+  (S.products.length&&S.ob.date?'':'<section class="cd start"><div class="ti">Начало работы</div>'+
+    '<button class="stp'+(S.wh.length?' ok':'')+'" data-act="go" data-v="whs"><i>1</i><span>Проверьте склады<small>'+esc(S.wh.map(function(w){return w.name}).join(', '))+'</small></span></button>'+
+    '<button class="stp'+(S.products.length?' ok':'')+'" data-act="go" data-v="list"><i>2</i><span>Добавьте шины<small>«Склад (товары)» → кнопка «+»</small></span></button>'+
+    '<button class="stp'+(S.ob.date?' ok':'')+'" data-act="obopen"><i>3</i><span>Внесите начальные остатки<small>деньги, шины и долги до начала работы</small></span></button></section>')+
   '<div class="qa"><button class="on" data-act="dnew" data-v="sale">'+ic('sell')+'Продажа</button><button data-act="dnew" data-v="buy">'+ic('truck')+'Закупка</button><button data-act="cnew" data-v="out">'+ic('cash')+'Расход</button></div>'+
   '<section class="money"><small>Деньги сейчас</small><b>'+nf(kc+kb)+'<span> сом.</span></b><div><span><small>В кассе</small>'+nf(kc)+' сом.</span><span><small>В банке</small>'+nf(kb)+' сом.</span></div>'+(usd?'<p>в том числе '+f2(usd)+' USD по курсу '+f2(S.rate)+'</p>':'')+'</section>'+
   '<div class="kp">'+
@@ -1039,7 +1140,7 @@ function vCForm(){
        :'<div class="fi"><label for="g-cacc">'+(d.dir==='in'?'Куда поступили деньги':'Откуда выданы деньги')+'</label><select id="g-cacc" data-g="c.acc">'+accOpts(d.acc)+'</select></div>')+
     gf('Дата','c.date',d.date,{type:'date'})+
     (tr?'':'<div class="fi"><label for="g-ccat">Статья</label><select id="g-ccat" data-g="c.cat">'+cats.map(function(c){return '<option'+(c===d.cat?' selected':'')+'>'+esc(c)+'</option>'}).join('')+'</select></div>'+
-    gf(d.dir==='in'?'От кого (клиент, поставщик)':'Кому (поставщик, работник)','c.partner',d.partner,{list:'padl',ph:'Необязательно'})+
+    nfield(d.dir==='in'?'От кого (клиент, поставщик)':'Кому (поставщик, работник)','c.partner',d.partner,'Необязательно')+
     '<p class="note">Если указать клиента или поставщика, сумма попадёт в его акт сверки.</p>')+
     '<div class="fi"><label for="g-ccom">Комментарий</label><textarea id="g-ccom" data-g="c.comment" placeholder="'+(tr?'Например, сдали выручку в банк':'Откуда деньги, за что, кто принял')+'">'+esc(d.comment)+'</textarea></div>'+
     (dc?'<p class="note">По документу <b>'+esc(dc.no)+'</b> ('+DT[dc.type].one.toLowerCase()+', '+mon(docSum(dc),dc.cur)+')</p>':'')+
@@ -1101,10 +1202,16 @@ function vActP(id){
 /* ---------- overlays & actions for the sections above ---------- */
 function ovl2(o,el){
   var h='';
+  if(o.t==='pick'){
+    el.innerHTML='<div class="scrim" data-act="oclose"></div><div class="sheet pks" role="dialog" aria-label="Выбор шины"><div class="pkh"><b>Выберите шину</b>'+(o.w&&o.m==='avail'?'<small>склад «'+esc(whName(o.w))+'» — только то, что есть в наличии</small>':'')+'</div>'+
+      '<input id="pkq" type="search" placeholder="Поиск: код, размер, марка" autocomplete="off" aria-label="Поиск шины"><div id="pkl"></div></div>';
+    fillPick();return true;
+  }
   if(o.t==='dkebab'){var d=docById(cur().id);
     h='<div class="scrim clear" data-act="oclose"></div><div class="pop" role="menu"><button role="menuitem" data-act="dedit">Изменить</button>'+(d&&r2(docSum(d)-paidOf(d))>0.004?'<button role="menuitem" data-act="dpay">'+(d.type==='sale'?'Принять оплату':'Оплатить')+'</button>':'')+'<button role="menuitem" class="d" data-act="ddelask">Удалить</button></div>'}
   else if(o.t==='ddel'){var dd=docById(o.id),n=S.cash.filter(function(c){return c.docId===o.id}).length;
     h='<div class="scrim" data-act="oclose"></div><div class="dlg" role="alertdialog" aria-label="Удаление"><h2>Удалить документ?</h2><p>'+(dd?esc(dd.no+' · '+pName(dd.partner)+' · '+mon(docSum(dd),dd.cur)):'')+'</p><p class="note" style="margin-top:6px">Остатки на складе вернутся как были.'+(n?' Связанные оплаты в кассе ('+n+') тоже удалятся.':'')+'</p><div class="acts"><button class="btn t" data-act="oclose">Отмена</button><button class="btn d" data-act="dddo">Удалить</button></div></div>'}
+  else if(o.t==='wipe'){h='<div class="scrim" data-act="oclose"></div><div class="dlg" role="alertdialog" aria-label="Удаление"><h2>Удалить все данные?</h2><p>Удалятся шины, закупки, продажи, касса, долги и начальные остатки. Склады, название и курс останутся.</p><p class="note" style="margin-top:6px">Отменить это нельзя. Если нужно, сначала сделайте резервную копию.</p><div class="acts"><button class="btn t" data-act="oclose">Отмена</button><button class="btn d" data-act="wipedo">Удалить всё</button></div></div>'}
   else if(o.t==='cdel'){h='<div class="scrim" data-act="oclose"></div><div class="dlg" role="alertdialog" aria-label="Удаление"><h2>Удалить операцию?</h2><p class="note">Сумма уйдёт из кассы и из акта сверки.</p><div class="acts"><button class="btn t" data-act="oclose">Отмена</button><button class="btn d" data-act="cddo">Удалить</button></div></div>'}
   else if(o.t==='rate'){h='<div class="scrim" data-act="oclose"></div><div class="dlg" role="dialog" aria-label="Курс доллара"><h2>Курс доллара</h2><div class="fi"><label for="rtv">1 USD = ? TJS</label><input id="rtv" value="'+esc(S.rate)+'" inputmode="decimal" autocomplete="off" data-enter="rsave"></div><p class="note" style="margin-top:6px">Новый курс подставится в новые закупки и продажи. В уже сохранённых документах курс не меняется.</p><div class="acts"><button class="btn t" data-act="oclose">Отмена</button><button class="btn" data-act="rsave">Сохранить</button></div></div>'}
   else if(o.t==='pedit'){var pp=o.id?partner(o.id):null,used=o.id&&moves(o.id).length;
@@ -1119,7 +1226,7 @@ function act2(a,t,id){
     case 'dkebab':openOv({t:'dkebab'});break;
     case 'dedit':closeOv();editDoc(docById(cur().id));push({s:'dform'});break;
     case 'ddelask':openOv({t:'ddel',id:ui.df&&ui.df.id?ui.df.id:cur().id});break;
-    case 'dddo':{var d=docById(ui.ov.id);if(d){applyDoc(d,-1);S.docs=S.docs.filter(function(x){return x!==d});S.cash=S.cash.filter(function(c){return c.docId!==d.id})}
+    case 'dddo':{var snp=JSON.stringify(S),bfr=stockMap(),d=docById(ui.ov.id);if(d){applyDoc(d,-1);var nb=negNew(bfr);if(nb){S=JSON.parse(snp);closeOv();return toast(NEGMSG+nb+'. Шины из этой закупки уже проданы или перемещены')}S.docs=S.docs.filter(function(x){return x!==d});S.cash=S.cash.filter(function(c){return c.docId!==d.id})}
       save();closeOv();ui.df=null;toast('Документ удалён');popTo(1);break}
     case 'dsave':saveDoc();break;
     case 'dladd':ui.df.d.items.push({prod:'',qty:'1',price:''});keep();var ins=document.querySelectorAll('[data-g$=".prod"]');if(ins.length)ins[ins.length-1].focus();break;
@@ -1140,8 +1247,15 @@ function act2(a,t,id){
     case 'thp':TH.preset=t.dataset.v;TH.over={};saveTh();applyTheme();keep();break;
     case 'ths':TH.size=+t.dataset.v;saveTh();applyTheme();keep();break;
     case 'threset':TH={preset:'auto',over:{},size:1};saveTh();applyTheme();keep();toast('Оформление сброшено');break;
+    case 'pick':ui.ov=null;openOv({t:'pick',k:t.dataset.k,w:+t.dataset.w||0,m:t.dataset.m});break;
+    case 'pkset':setPick(id);break;
+    case 'sugset':{var si=document.querySelector('[data-g="'+t.dataset.k+'"]');if(si){si.value=t.dataset.v;gIn(si,true);var sb=document.getElementById('sug-'+t.dataset.k.replace(/\./g,'-'));if(sb)sb.innerHTML=''}break}
+    case 'pquick':{var qp=prod(cur().id),ty=t.dataset.v;if(!qp)break;newDoc(ty);var bw=0,bq=-1;S.wh.forEach(function(w){var q=stOf(qp,w.id).q;if(q>bq){bq=q;bw=w.id}});
+      if(ty!=='buy'){if(bq<=0)return toast('Этой шины нет на складах');ui.df.d.wh=String(bw);if(ty==='move'){var o2=S.wh.filter(function(w){return w.id!==bw})[0];if(!o2)return toast('Для перемещения нужен второй склад');ui.df.d.wh2=String(o2.id)}}
+      ui.df.d.items=[{prod:qp.code+' · '+qp.name,qty:'1',price:ty==='move'?'':String(defPrice(qp,ui.df.d))}];push({s:'dform'});break}
     case 'cnew':newCash(t.dataset.v?{dir:t.dataset.v}:null);push({s:'cform'});break;
     case 'btab':ui.bt=t.dataset.v;keep();break;
+    case 'exopen':ui.ex=ui.ex===t.dataset.v?'':t.dataset.v;keep();break;
     case 'bper':ui.bp=t.dataset.v;keep();break;
     case 'bprev':bShift(-1);keep();break;
     case 'bnext':bShift(1);if(bRange().from>today())bShift(-1);keep();break;
@@ -1171,6 +1285,7 @@ function act2(a,t,id){
 }
 function gIn(t,ch){
   var k=t.dataset.g,v=t.value;
+  if(t.dataset.sug&&!ch)updSug(t);
   if(k==='dq'){ui.dq=v;fillDocs();return}
   if(k==='aq'){ui.aq=v;fillAct();return}
   if(k==='af'||k==='at'){if(ch){ui.ap[k==='af'?'from':'to']=v;keep()}return}
@@ -1208,7 +1323,29 @@ function seedDocs(){
   S.cash.push({id:nextId(S.cash),no:nextNo('cash'),dir:'out',date:daysAgo(1),partner:0,amount:900,cur:'TJS',cat:'Зарплата',comment:'Аванс продавцу Ахмаду',docId:0});
 }
 
-if(S._demo){delete S._demo;seedDocs();save()}
+
+
+function fillPick(){
+  var o=ui.ov,el=$('#pkl');if(!o||!el)return;var qi=$('#pkq'),q=norm(qi?qi.value:''),w=+o.w;
+  var L=S.products.filter(function(p){return !q||norm(p.code+' '+p.name+' '+(p.barcode||'')).indexOf(q)>=0})
+    .map(function(p){return {p:p,a:w?(o.m==='avail'?availFor(p,w):stOf(p,w).q):agg(p,allIds()).q}})
+    .filter(function(x){return o.m!=='avail'||x.a>0})
+    .sort(function(a,b){return a.p.name<b.p.name?-1:a.p.name>b.p.name?1:0}).slice(0,100);
+  el.innerHTML=L.length?L.map(function(x){return '<button type="button" class="pki" data-act="pkset" data-id="'+x.p.id+'"><span>'+esc(x.p.code)+' · '+esc(x.p.name)+'</span><b class="'+(x.a>0?'':'muted')+'">'+x.a+' шт</b></button>'}).join('')
+    :'<p class="note" style="padding:16px 4px">'+(!S.products.length?'Шин пока нет. Сначала добавьте их в разделе «Склад (товары)».':q?'Ничего не найдено.':'На складе «'+esc(whName(w))+'» сейчас нет шин.')+'</p>';
+}
+function setPick(pid){
+  var o=ui.ov,p=prod(pid);if(!o||!p)return;var ps=o.k.split('.'),lb=p.code+' · '+p.name;
+  if(ps[0]==='it'&&ui.df){var d=ui.df.d,L=d.items[+ps[1]];if(L){L.prod=lb;if(L.price===''&&d.type!=='move')L.price=String(defPrice(p,d));if(!L.qty)L.qty='1'}}
+  if(ps[0]==='o'&&ui.ob){var X=ui.ob.stock[+ps[2]];if(X){X.prod=lb;if(X.cost===''||X.cost==='0')X.cost=String(p.cost||0)}}
+  closeOv();keep();
+}
+/* stock never goes below zero: compare stock before and after a change */
+function stockMap(){var m={};S.products.forEach(function(p){for(var w in p.st)m[p.id+'_'+w]=p.st[w].q});return m}
+function negNew(before){
+  var bad='';S.products.forEach(function(p){for(var w in p.st){var q=p.st[w].q,b=before[p.id+'_'+w];if(q<0&&(b==null||q<b))bad=bad||(p.name+' — склад «'+whName(+w)+'»')}});return bad;
+}
+var NEGMSG='Нельзя: остаток станет меньше нуля — ';
 
 /* ---------- opening balances (начальные остатки) ---------- */
 function openTotals(){
@@ -1234,15 +1371,15 @@ function obPreview(){
 }
 function vOpen(){
   if(!ui.ob)obLoad();var o=ui.ob,P=obPreview();
-  var dl='<datalist id="pdl">'+S.products.map(function(p){return '<option value="'+esc(p.code+' · '+p.name)+'">'}).join('')+'</datalist>'+pdl();
+  var dl='';
   var money=function(a,c,lb){return gf(lb,'o.m.'+a+'.'+c,o.m[a][c],{mode:'decimal',ph:'0'})};
   var st=o.stock.map(function(L,i){var p=findProd(L.prod);
     return '<div class="ln">'+(o.stock.length>1?'<button class="ib x" data-act="obrm" data-k="stock" data-i="'+i+'" aria-label="Убрать">'+ic('close')+'</button>':'')+
-      gf('Шина','o.stock.'+i+'.prod',L.prod,{list:'pdl',ph:'Код или название'})+(L.prod&&!p?'<div class="lsum neg">Товар не найден — выберите из списка или добавьте его в «Склад»</div>':'')+
+      pfield('Шина','o.stock.'+i+'.prod',L.prod,0,'all')+
       '<div class="fi"><label>Склад</label><select data-g="o.stock.'+i+'.wh">'+whOpts(L.wh)+'</select></div><div class="fi2" style="grid-template-columns:1fr 1fr">'+gf('Кол-во, шт','o.stock.'+i+'.qty',L.qty,{mode:'decimal'})+gf('Цена закупки за 1 шт, сом','o.stock.'+i+'.cost',L.cost,{mode:'decimal'})+'</div></div>'}).join('');
   var db=o.debts.map(function(x,i){
     return '<div class="ln">'+(o.debts.length>1?'<button class="ib x" data-act="obrm" data-k="debts" data-i="'+i+'" aria-label="Убрать">'+ic('close')+'</button>':'')+
-      gf('Клиент или поставщик','o.debts.'+i+'.name',x.name,{list:'padl',ph:'Имя'})+
+      nfield('Клиент или поставщик','o.debts.'+i+'.name',x.name,'Имя')+
       '<div class="lnf"><div class="fi"><label>Кто должен</label><select data-g="o.debts.'+i+'.dir"><option value="in"'+(x.dir==='in'?' selected':'')+'>Он нам</option><option value="out"'+(x.dir==='out'?' selected':'')+'>Мы ему</option></select></div>'+
       gf('Сумма','o.debts.'+i+'.amt',x.amt,{mode:'decimal',ph:'0'})+'<div class="fi"><label>Валюта</label><select data-g="o.debts.'+i+'.cur">'+curOpts(x.cur)+'</select></div></div></div>'}).join('');
   return '<header class="bar"><button class="ib" data-act="back" aria-label="Назад">'+ic('back')+'</button><h1 class="bt">Начальные остатки</h1><button class="ib" data-act="obsave" aria-label="Сохранить">'+ic('check')+'</button></header>'+dl+
@@ -1264,6 +1401,7 @@ function obSave(){
   var neg=false;['cash','bank'].forEach(function(a){['TJS','USD'].forEach(function(c){if(num(o.m[a][c])<0)neg=true})});
   if(neg)bad=bad||'Суммы денег не могут быть меньше нуля';
   if(bad)return toast(bad);
+  var snap=JSON.stringify(S),before=stockMap();
   /* stock: undo old opening documents, take out quantities that were moved from current stock, apply new ones */
   S.docs.filter(function(d){return d.type==='open'}).forEach(function(d){applyDoc(d,-1)});
   S.docs=S.docs.filter(function(d){return d.type!=='open'});
@@ -1273,6 +1411,7 @@ function obSave(){
   S.cash=S.cash.filter(function(c){return !c.open});
   ['cash','bank'].forEach(function(a){['TJS','USD'].forEach(function(c){var v=r2(num(o.m[a][c]));if(v>0)S.cash.push({id:nextId(S.cash),no:nextNo('cash'),dir:'in',acc:a,date:o.date,partner:0,amount:v,cur:c,cat:'Начальный остаток',comment:'До начала работы в программе',docId:0,open:1})})});
   S.ob={date:o.date,debts:debts.map(function(x){return {pid:partnerByName(x.name,true),amt:x.amt,cur:x.cur}})};
+  var nb=negNew(before);if(nb){S=JSON.parse(snap);return toast(NEGMSG+nb+'. Часть этих шин уже продана или перемещена')}
   save();ui.ob=null;toast('Начальные остатки сохранены');back();
 }
 function obFill(){
@@ -1393,9 +1532,9 @@ document.addEventListener('click',function(e){
     case 'copybk':{var ta=$('#bk');ta.select();var ok=function(){toast('Данные скопированы')};
       if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(ta.value).then(ok,function(){toast('Выделено. Нажмите «Копировать» в меню телефона')});else toast('Выделено. Нажмите «Копировать» в меню');break}
     case 'restore':try{var o=migrate(JSON.parse($('#rs').value));if(!o)throw 0;S=o;save();toast('Данные восстановлены');render()}catch(er){toast('Не удалось прочитать данные. Вставьте копию целиком')}break;
-    case 'blank':if(!t._a){t._a=1;t.textContent='Нажмите ещё раз: всё удалится';setTimeout(function(){t._a=0;t.textContent='Начать с нуля (всё удалить)'},5000)}else{S={v:2,name:S.name,rate:S.rate,wh:[{id:1,name:'Основной склад'}],products:[],partners:[],docs:[],cash:[],seq:{buy:0,sale:0,cash:0},ob:{date:'',debts:[]}};save();ui.f={wh:0,st:'all'};ui.q='';ui.exp={};toast('Склад очищен. Добавьте товары кнопкой «+»');top('list')}break;
+    case 'blank':openOv({t:'wipe'});break;
+    case 'wipedo':S=emptyData({name:S.name,rate:S.rate,wh:S.wh});save();closeOv();ui.f={wh:0,st:'all'};ui.q='';ui.exp={};toast('Все данные удалены. Можно начинать заново');top('home');break;
     default:act2(a,t,id);break;
-    case 'demo':S=migrate(seed());seedDocs();save();ui.f={wh:0,st:'all'};ui.q='';ui.exp={};toast('Демо-данные возвращены');top('list');break;
   }
 });
 function scanGo(){
@@ -1406,6 +1545,7 @@ function scanGo(){
 }
 document.addEventListener('input',function(e){
   var t=e.target;
+  if(t.id==='pkq'){fillPick();return}
   if(t.id==='sq'){ui.q=t.value;resetScroll();plist();var h=$('.bar');var c=h&&h.querySelector('[data-act="sclear"]');if(t.value&&!c){var b=document.createElement('button');b.className='ib';b.dataset.act='sclear';b.setAttribute('aria-label','Очистить');b.innerHTML=ic('close');h.appendChild(b)}else if(!t.value&&c)c.remove()}
   else if(t.dataset&&t.dataset.f&&ui.form)setF(t.dataset.f,t.value);
   else if(t.dataset&&t.dataset.g)gIn(t,false);
@@ -1417,6 +1557,13 @@ document.addEventListener('change',function(e){
   else if(t.id==='s-name'){S.name=t.value.trim()||'Чарх';save();toast('Сохранено')}
   else if(t.id==='s-rate'){var r=num(t.value);if(r>0){S.rate=r;save();toast('Курс сохранён')}else toast('Курс должен быть больше нуля')}
 });
+document.addEventListener('focusin',function(e){
+  var t=e.target;if(!t||!/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))return;
+  if(t.dataset&&t.dataset.sug)updSug(t);
+  if(t.id==='pkq')return;
+  setTimeout(function(){try{t.scrollIntoView({block:'center'})}catch(x){try{t.scrollIntoView(false)}catch(y){}}},350);
+});
+window.addEventListener('resize',function(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA)$/.test(a.tagName)&&a.id!=='pkq')setTimeout(function(){try{a.scrollIntoView({block:'center'})}catch(x){}},100)});
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){if(ui.ov)closeOv();else if(ui.drawer)closeDrawer();else if(ui.search&&cur().s==='list'){ui.search=false;ui.q='';render()}}
   else if(e.key==='Enter'){
